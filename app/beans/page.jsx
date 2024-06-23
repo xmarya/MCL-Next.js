@@ -7,7 +7,7 @@ export const metadata = {
   description: "",
 };
 
-export default async function Beans({ searchParams }) {
+export default function Beans({ searchParams }) {
   let sortBy;
 
   if (searchParams.hasOwnProperty("sortBy")) {
@@ -17,8 +17,9 @@ export default async function Beans({ searchParams }) {
 
   return (
     <div>
+      <h1>this h1 is outside the Suspence</h1>
       <BeansOperations />
-      <Suspense>
+      <Suspense fallback="Loading...">
         <BeansTable filter={searchParams} sort={sortBy} />
       </Suspense>
     </div>

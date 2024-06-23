@@ -182,7 +182,7 @@ beanSchema.post("save", async function() {
 beanSchema.post("findOneAndDelete", async function(deletedDoc) {
   console.log("inside post(delete)");
   
-  console.log(deletedDoc.nameEn, deletedDoc.id);
+  // console.log(deletedDoc.nameEn, deletedDoc.id);
   await Ranking.deleteOne(deletedDoc.id);
   console.log("now check Ranking after delete");
   await Review.deleteMany({ reviewedModel: deletedDoc.id})
