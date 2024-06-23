@@ -9,29 +9,29 @@ export async function createBean(formData) {
     // const beanData = formData;
     const newBean = await Bean.create(beanData);
     newBean.ratingsQuantityThisMonth = undefined;
-    // return JSON.parse(JSON.stringify(newBean));
+    // return newBean;
     return newBean; // check this later if it needs to be stringifyed
 }
 
 export async function getBeans(filter = {}, sortBy = "ranking") {
     await dbConnection();
     const beans = await Bean.find(filter).sort(sortBy);
-    console.log(typeof beans);
+    console.log("first state",typeof beans);
     if(!beans) return "No matched data"
-    return JSON.parse(JSON.stringify(beans));
+    return beans;
 }
 export async function getOneBean(beanId) {
     await dbConnection();
     const bean = await Bean.findById(beanId);
 
     if(!bean) return "No matched data"
-    return JSON.parse(JSON.stringify(bean));
+    return bean;
 }
 
 export async function getTopBeans() {
     await dbConnection();
     const beans = await Bean.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity roaster");
-    return JSON.parse(JSON.stringify(beans));
+    return beans;
 }
 
 export async function updateBean(formData) { // here you're going to use that trick Jonas have teached you abou the hidden fom input that holds the id
