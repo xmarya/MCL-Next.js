@@ -3,8 +3,6 @@ import RoastersTable from "@/Components/Roasters/RoastersTable";
 import { Suspense } from "react";
 
 export default async function Roasters({ searchParams }) {
-    
-
     let sortBy;
 
   if (searchParams.hasOwnProperty("sortBy")) {
