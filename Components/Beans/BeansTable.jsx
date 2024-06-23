@@ -9,7 +9,7 @@ export default async function BeansTable({filter, sort}) {
     console.log(beans.length);
     return (
         <div>
-            <div>{beans}</div>
+            <div>{beans[0].ranking}</div>
         </div>
     )
 }

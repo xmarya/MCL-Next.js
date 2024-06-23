@@ -16,3 +16,9 @@ export async function getOneBean(beanId) {
     if(!bean) return "No matched data"
     return JSON.stringify(bean);
 }
+
+export async function getTopBeans() {
+    await dbConnection();
+    const beans = await Bean.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity roaster");
+    return JSON.stringify(beans);
+}
