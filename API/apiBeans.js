@@ -2,7 +2,6 @@ import Bean from "@/Models/beanModel";
 import { dbConnection } from "@/helpers/dbConnection";
 
 
-
 export async function createBean(formData) {
     await dbConnection();
     // DON'T FORGET THAT HERE YOU MUST CHECK BEFORE DOING ANY THING IF THE USER WHO IS TRYING TO PERFORM THIS API MUST BE AN ADMIN OR THE BEAN'S ROASTER-MASTER.
@@ -38,12 +37,8 @@ export async function updateBean(formData) { // here you're going to use that tr
     await dbConnection();
     // DON'T FORGET THAT HERE YOU MUST CHECK BEFORE DOING ANY THING IF THE USER WHO IS TRYING TO PERFORM THIS API MUST BE AN ADMIN OR THE BEAN'S ROASTER-MASTER.
     // const updatedData = formData;
-    const beanId = "6678458f199a4c091aa0cf6d"
-    const updatedData = {
-        originAr: "جواتيمالا"
-    }
-
-    const updatedBean = await Bean.findByIdAndUpdate(beanId, updatedData);
+    const updatedData = formData
+    // const updatedBean = await Bean.findByIdAndUpdate(beanId, updatedData);
     return updatedBean;
 
 }

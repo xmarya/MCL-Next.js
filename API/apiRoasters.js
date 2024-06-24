@@ -1,6 +1,13 @@
 import Roaster from "@/Models/roasterModel";
 import { dbConnection } from "@/helpers/dbConnection";
 
+export async function createRoaster(formData) {
+    await dbConnection();
+
+    const newRoaster = await Roaster.create();
+    newRoaster.ratingsQuantityThisMonth = undefined;
+    return newRoaster;
+}
 
 export async function getRoasters(filter = {}, sortBy = "ranking") {
     await dbConnection();
@@ -9,7 +16,6 @@ export async function getRoasters(filter = {}, sortBy = "ranking") {
     if(!roasters) return "No matched data"
     return JSON.stringify(roasters);
 }
-
 
 export async function getOneRoaster(roasterId) {
     await dbConnection();
@@ -23,4 +29,17 @@ export async function getTopBeans() {
     await dbConnection();
     const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity");
     return JSON.stringify(roasters);
+}
+
+export async function updateRoaster(formData) {
+    await dbConnection();
+    const updateData = formData;
+    // const updatedRoaster = await Roaster.findByIdAndUpdate(roasterId, updateData);
+    return updatedRoaster;
+}
+
+export async function deleteRoaster(roasterId) {
+    await dbConnection();
+    await Roaster.findByIdAndDelete(roasterId);
+    return "roaster deleted";
 }
