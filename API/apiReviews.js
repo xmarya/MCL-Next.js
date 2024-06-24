@@ -29,6 +29,17 @@ export async function writeReview(formDate) {
     return newReview;
 }
 
-export async function updateMyReview(formDate) {}
+export async function updateMyReview(formDate) {
+    
+    // const updatedData = formDate;
+    // const updatedReveiw = await Review.findByIdAndUpdate(reviewId, updatedData);
 
-export async function deleteMyReview(reviewId) {}
+    // return updatedReveiw;
+}
+
+export async function deleteMyReview(reviewId) {
+
+    await Review.findByIdAndDelete(reviewId);
+
+    return "successfully deleted";
+}
