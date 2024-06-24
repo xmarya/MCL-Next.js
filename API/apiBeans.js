@@ -14,17 +14,20 @@ export async function createBean(formData) {
 
 export async function getBeans(filter = {}, sortBy = "ranking") {
     await dbConnection();
-    const beans = await Bean.find(filter).sort(sortBy);
-    console.log("first state",typeof beans);
+    const beans = await Bean.find(filter).sort(sortBy).select("-__v");
+
     if(!beans) return "No matched data"
     return beans;
 }
 export async function getOneBean(beanId) {
     await dbConnection();
-    const bean = await Bean.findById(beanId);
+    const bean = await Bean.findById(beanId).select("-__v")
+        .populate({ path: "reviews", select: "reviewBody rating wroteAt user -reviewedModel"})
+        .populate({ path: "roaster", select: "nameEn nameAr rating"})
+        .populate({ path: "ranking", select: "rank"});
 
     if(!bean) return "No matched data"
-    return bean;
+    return {bean, reviews: bean.reviews, roaster: bean.roaster, ranking: bean.ranking};
 }
 
 export async function getTopBeans() {

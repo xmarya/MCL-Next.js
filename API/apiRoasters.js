@@ -11,7 +11,7 @@ export async function createRoaster(formData) {
 
 export async function getRoasters(filter = {}, sortBy = "ranking") {
     await dbConnection();
-    const roasters = await Roaster.find(filter).sort(sortBy);
+    const roasters = await Roaster.find(filter).sort(sortBy).select("-__v");
 
     if(!roasters) return "No matched data"
     return roasters;
@@ -19,17 +19,18 @@ export async function getRoasters(filter = {}, sortBy = "ranking") {
 
 export async function getOneRoaster(roasterId) {
     await dbConnection();
-    const roaster = await Roaster.findById(roasterId)
+    const roaster = await Roaster.findById(roasterId).select("-__v")
         .populate({ path: "reviews", select: "reviewBody rating wroteAt user -reviewedModel"})
-        .populate({ path: "beans", select: "nameEn nameAr image rating -roaster"});
+        .populate({ path: "beans", select: "nameEn nameAr image rating -roaster"})
+        .populate({ path: "ranking", select: "rank"});
 
     if(!roaster) return "No matched data"
-    return {roaster, reviews: roaster.reviews, beans: roaster.beans};
+    return {roaster, reviews: roaster.reviews, beans: roaster.beans, ranking: roaster.ranking};
 }
 
 export async function getTopBeans() {
     await dbConnection();
-    const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity");
+    const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity -__v");
     return roasters;
 }
 
