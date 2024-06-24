@@ -39,7 +39,7 @@ export async function updateBean(formData) { // here you're going to use that tr
     // const updatedData = formData;
     const updatedData = formData
     // const updatedBean = await Bean.findByIdAndUpdate(beanId, updatedData);
-    return updatedBean;
+    // return updatedBean;
 
 }
 

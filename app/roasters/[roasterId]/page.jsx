@@ -1,10 +1,10 @@
 import { getOneRoaster } from "@/API/apiRoasters";
 
 export default async function Roaster({params}) {
-    const roaster = await getOneRoaster(params.roasterId);
+    const {roaster, reviews, beans} = await getOneRoaster(params.roasterId);
     return (
         <div>
-            {roaster}
+            <h1>[roasterId] comp</h1>
         </div>
     )
 }

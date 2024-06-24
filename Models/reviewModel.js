@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import User from "./userModel";
 // import moment from 'moment-timezone';
 
 const reviewSchema = new mongoose.Schema({
@@ -21,7 +22,7 @@ const reviewSchema = new mongoose.Schema({
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: User
     },
 
     // this is called in mongoose : Dynamic References via refPath, which is different from ref.
@@ -216,6 +217,6 @@ reviewSchema.post("save", function() { // no need to use async-await in post() h
 });
 
 mongoose.set("sanitizeFilter", true);
-const Review = mongoose.models.Review || mongoose.model("Review", reviewSchema);
+const Review = mongoose.models?.Review || mongoose.model("Review", reviewSchema);
 
 export default Review;

@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 import slugify from "slugify";
 import validator from "validator";
-import bcrypt from "bcryptjs";
-import crypto from "crypto";
+// import bcrypt from "bcryptjs";
+// import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
@@ -167,6 +167,6 @@ userSchema.methods.generateRandomToken = function() {
 }
 
 mongoose.set("sanitizeFilter", true);
-const User = mongoose.models.User || mongoose.model("User", userSchema);
+const User = mongoose.models?.User || mongoose.model("User", userSchema);
 
 export default User;
