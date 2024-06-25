@@ -30,11 +30,11 @@ export async function getOneBean(beanId) {
     return {bean, reviews: bean.reviews, roaster: bean.roaster, ranking: bean.ranking};
 }
 
-export async function getTopBeans() {
-    await dbConnection();
-    const beans = await Bean.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity roaster");
-    return beans;
-}
+// export async function getTopBeans() {
+//     await dbConnection();
+//     const beans = await Bean.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity roaster");
+//     return beans;
+// }
 
 export async function updateBean(formData) { // here you're going to use that trick Jonas have teached you abou the hidden fom input that holds the id
     await dbConnection();

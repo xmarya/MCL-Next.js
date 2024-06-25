@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import slugify from "slugify";
 import Ranking from "./rankingModel";
 import Review from "./reviewModel";
-import Bean from "./beanModel";
+// import Bean from "./beanModel";
 import User from "./userModel";
 
 const roasterSchema = new mongoose.Schema(
@@ -120,7 +120,7 @@ roasterSchema.index({cityEn: 1});
 roasterSchema.index({"locations.coordinates": "2dsphere"});
 
 roasterSchema.virtual("beans", {
-  ref: Bean,
+  ref: "Bean",
   localField: "_id",
   foreignField: "roaster"
 });

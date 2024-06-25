@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Bean from "./beanModel";
+import Roaster from "./roasterModel";
 
 const rankingSchema = new mongoose.Schema({
     modelId: {
@@ -8,7 +10,7 @@ const rankingSchema = new mongoose.Schema({
     },
     model: {
         type: String,
-        enum: ["Bean", "Roaster"]
+        enum: [Bean, Roaster]
     },
     rank: Number,
 },
@@ -23,7 +25,7 @@ const rankingSchema = new mongoose.Schema({
 rankingSchema.index({rank: -1, model: 1});
 
 rankingSchema.pre(/^find/, function(next) {
-    this.populate("modelId");
+    this.populate({path: "modelId", select: "nameEn nameAr image ratingsQuantity ratingsAverage roaster"});
     next();
 });
 

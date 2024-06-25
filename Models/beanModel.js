@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import slugify from "slugify";
 import Ranking from "./rankingModel";
 import Review from "./reviewModel";
+import Roaster from "./roasterModel";
 
 const beanSchema = new mongoose.Schema(
   {
@@ -91,7 +92,7 @@ const beanSchema = new mongoose.Schema(
 
     roaster: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Roaster",
+      ref: Roaster,
       required: [true, "roaster is required"],
     },
     // reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }]

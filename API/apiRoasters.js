@@ -28,11 +28,11 @@ export async function getOneRoaster(roasterId) {
     return {roaster, reviews: roaster.reviews, beans: roaster.beans, ranking: roaster.ranking};
 }
 
-export async function getTopBeans() {
-    await dbConnection();
-    const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity -__v");
-    return roasters;
-}
+// export async function getTopRoasters() {
+//     await dbConnection();
+//     const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity -__v");
+//     return roasters;
+// }
 
 export async function updateRoaster(formData) {
     await dbConnection();

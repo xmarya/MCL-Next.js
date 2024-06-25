@@ -1,13 +1,14 @@
-import { getBeans } from "@/API/apiBeans";
-import { dbConnection } from "@/helpers/dbConnection"
-
+import TopTenBeans from "@/Components/Beans/TopTenBeans";
+import { Suspense } from "react";
 
 // displays top-ten roasters/beans and latest 10 reviews
 export default async function Home() {
-    await dbConnection();
     return (
         <div>
             Helleoo there ?
+            <Suspense fallback="Loading...">
+                <TopTenBeans/>
+            </Suspense>
         </div>
     )
 }
