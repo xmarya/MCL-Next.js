@@ -4,7 +4,7 @@ import Ranking from "./rankingModel";
 import Review from "./reviewModel";
 import Roaster from "./roasterModel";
 
-const beanSchema = new mongoose.Schema(
+const BeanSchema = new mongoose.Schema(
   {
     nameEn: {
       type: String,
@@ -107,18 +107,18 @@ const beanSchema = new mongoose.Schema(
 
   }
 );
-beanSchema.index({ratingsAverage: -1, ratingsQuantity: 1});
-beanSchema.index({drinkTypeEn:1, ratingsAverage : -1});
-beanSchema.index({drinkTypeAr:1, ratingsAverage : -1});
-beanSchema.index({slug: 1});
+BeanSchema.index({ratingsAverage: -1, ratingsQuantity: 1});
+BeanSchema.index({drinkTypeEn:1, ratingsAverage : -1});
+BeanSchema.index({drinkTypeAr:1, ratingsAverage : -1});
+BeanSchema.index({slug: 1});
 
-beanSchema.virtual("reviews", {
+BeanSchema.virtual("reviews", {
   ref: "Review",
   localField: "_id",
   foreignField: "reviewedModel"
 });
 
-beanSchema.pre("save", function(next) {
+BeanSchema.pre("save", function(next) {
   console.log("here is pre(save) slug, this may cuase an error");
     this.slug = slugify(this.nameEn, {lower: true}) ;
     // this.slug = slug.concat("-", this.roaster.name);
@@ -128,7 +128,7 @@ beanSchema.pre("save", function(next) {
 
 
 
-beanSchema.statics.setRanking = async function() {  
+BeanSchema.statics.setRanking = async function() {  
   const beans = await this.aggregate([{ $match: {ratingsQuantity : { $gt: 0} } }]);
   const sortedBeans = beans.sort( (a,b) => {
     const ratingAverageComparison = b.ratingsAverage - a.ratingsAverage;
@@ -150,7 +150,7 @@ beanSchema.statics.setRanking = async function() {
   );  
 }
 
-beanSchema.pre("save", async function(next) {
+BeanSchema.pre("save", async function(next) {
 
   // 1- Guard statement :
   if(!this.isModified("ratingsQuantity")) return next();
@@ -175,12 +175,12 @@ beanSchema.pre("save", async function(next) {
   next();
 });
 
-beanSchema.post("save", async function() {  
+BeanSchema.post("save", async function() {  
   // after setting the ratingsQuantity, let's recalculate the ranking:
   await this.constructor.setRanking();
 });
 
-beanSchema.post("findOneAndDelete", async function(deletedDoc) {
+BeanSchema.post("findOneAndDelete", async function(deletedDoc) {
   console.log("inside post(delete)");
   
   // console.log(deletedDoc.nameEn, deletedDoc.id);
@@ -192,6 +192,6 @@ beanSchema.post("findOneAndDelete", async function(deletedDoc) {
 
 // mongoose.set("sanitizeFilter", true);
 mongoose.set("sanitizeFilter", false); // I changed becuase of the getTopBeans() was throwing this Error: Cast to Number failed for value "{ '$lte': 10 }" (type Object) 
-const Bean = mongoose.models?.Bean || mongoose.model("Bean", beanSchema);
+const Bean = mongoose.models.Bean || mongoose.model("Bean", BeanSchema);
 
 export default Bean;

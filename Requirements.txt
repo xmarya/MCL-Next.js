@@ -1,0 +1,11 @@
+check:    
+  ✅  1- display the top 10 beans and roasters
+  ✅  2- display the most rated last month bean and roaster
+    3- user can login using either email&pass or by google account
+    4- a user can be a roaster owner
+    5- the admin is the only one who can add a roaster owner
+    6- the roaster owner can update a roaster
+    7- the roaster owner can add, update beans
+    8- the deletion of a bean or a roaster can be done by the admin only after a request from the roaster owner
+    9- reset the most rated this month on the 1st of the next month
+    10- the app should support the Arabic and English

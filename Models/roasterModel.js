@@ -5,7 +5,7 @@ import Review from "./reviewModel";
 // import Bean from "./beanModel";
 import User from "./userModel";
 
-const roasterSchema = new mongoose.Schema(
+const RoasterSchema = new mongoose.Schema(
   {
     nameEn: {
       type: String,
@@ -113,34 +113,34 @@ const roasterSchema = new mongoose.Schema(
 );
 
 
-roasterSchema.index({ratingsAverage: -1, ratingsQuantity: 1});
-roasterSchema.index({slug: 1});
-roasterSchema.index({cityAr: 1});
-roasterSchema.index({cityEn: 1});
-roasterSchema.index({"locations.coordinates": "2dsphere"});
+RoasterSchema.index({ratingsAverage: -1, ratingsQuantity: 1});
+RoasterSchema.index({slug: 1});
+RoasterSchema.index({cityAr: 1});
+RoasterSchema.index({cityEn: 1});
+RoasterSchema.index({"locations.coordinates": "2dsphere"});
 
-roasterSchema.virtual("beans", {
+RoasterSchema.virtual("beans", {
   ref: "Bean",
   localField: "_id",
   foreignField: "roaster"
 });
 
-roasterSchema.virtual("reviews", {
+RoasterSchema.virtual("reviews", {
   ref: "Review",
   localField: "_id",
   foreignField: "reviewedModel"
 });
 
-roasterSchema.pre("save", function (next) {
+RoasterSchema.pre("save", function (next) {
   this.slug = slugify(this.nameEn, {lower: true});
   next();
 });
 
-roasterSchema.methods.isMyMaster = function(userId) {
+RoasterSchema.methods.isMyMaster = function(userId) {
   return this.master.id === userId;
 }
 
-roasterSchema.statics.setRanking = async function() {
+RoasterSchema.statics.setRanking = async function() {
   console.log("inside set ranking");
   
   // const roasters = await this.find( { ratingsQuantity: { $gt: 0} } );
@@ -179,7 +179,7 @@ roasterSchema.statics.setRanking = async function() {
 }
 
 // this doc md if for getting the most rated roaster this mont
-roasterSchema.pre("save", async function(next) {  
+RoasterSchema.pre("save", async function(next) {  
 console.log("pre save ratingsQ is mody", this.isModified("ratingsQuantity"));
 
   // 1- Guard statement :
@@ -206,7 +206,7 @@ console.log("pre save ratingsQ is mody", this.isModified("ratingsQuantity"));
   next();
 });
 
-roasterSchema.post("save", async function() {
+RoasterSchema.post("save", async function() {
   console.log("before set ranking");
   
   // after setting the ratingsQuantity in pre(save), let's recalculate the ranking:
@@ -214,7 +214,7 @@ roasterSchema.post("save", async function() {
 
 });
 
-roasterSchema.post("findOneAndDelete", async function(deletedDoc) {
+RoasterSchema.post("findOneAndDelete", async function(deletedDoc) {
   console.log("inside post(delete)");
   
   console.log(deletedDoc.nameEn, deletedDoc.id);
@@ -228,6 +228,6 @@ roasterSchema.post("findOneAndDelete", async function(deletedDoc) {
 
 // mongoose.set("sanitizeFilter", true);
 mongoose.set("sanitizeFilter", false); // I changed becuase of the getTopRoaster() was throwing this Error: Cast to Number failed for value "{ '$lte': 10 }" (type Object) 
-const Roaster = mongoose.models.Roaster || mongoose.model("Roaster", roasterSchema);
+const Roaster = mongoose.models.Roaster || mongoose.model("Roaster", RoasterSchema);
 
 export default Roaster;

@@ -1,3 +1,7 @@
 1) consider implementing one API func that handles getAll, getOne, getTopTen..etc 
     for both the beans and the roasters, and maybe one delete API for them + the review.
     maybe doing this after discovering how the populate works.
+
+2) the getTopTen API logic that was changed completely on 2024年6月25日 has one problem, 
+    which is that it doesn't populate the roaster doc of the beans.
+    maybe I have no choise but populating it inside the pre(find) hook in the beanModel

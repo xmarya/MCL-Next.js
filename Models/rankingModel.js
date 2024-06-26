@@ -10,7 +10,7 @@ const rankingSchema = new mongoose.Schema({
     },
     model: {
         type: String,
-        enum: [Bean, Roaster]
+        enum: ["Bean", Roaster]
     },
     rank: Number,
 },
