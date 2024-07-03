@@ -1,24 +1,24 @@
 "use client"
 
-import { signup } from "@/API/actions";
+import { login } from "@/API/actions"
 import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
-import { SignupFormSchema } from "@/helpers/zodValidator";
+import { LoginFormSchema } from "@/helpers/zodValidator";
 
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 
-export default function SignupForm() {
+export default function LoginForm() {
     const router = useRouter();
-    const {register, handleSubmit, reset, formState: {isSubmitting, errors: formErrors}} = useForm({mode: "onBlur", resolver: zodResolver(SignupFormSchema)});
+    const {register, handleSubmit, reset, formState: {isSubmitting, errors: formErrors}} = useForm({mode: "onBlur", resolver: zodResolver(LoginFormSchema)});
 
     async function handleFormSubmit(formData) {
-        const result = await signup(formData);
+        const result = await login(formData);
 
         if(result?.error) return toast.error(result.error.message);
 
-        toast.success("Successful Signup!")
+        toast.success("Welcome Back!")
        reset ();
        router.replace("/");
     //    router.push("/");
@@ -27,10 +27,7 @@ export default function SignupForm() {
 
     return (
         <form onSubmit={handleSubmit(handleFormSubmit)}>
-            <label htmlFor="username">Username:</label>
-            <input required type="username" name="username" id="username"
-                {...register("username")} />
-                {formErrors?.username?.message && <p>{formErrors.username.message}</p>}
+
             <label htmlFor="email">Email:</label>
             <input required type="email" name="email" id="email"
                 {...register("email")} />
@@ -39,14 +36,10 @@ export default function SignupForm() {
             <input required type="password" name="password" id="password"
                 {...register("password")} />
                 {formErrors?.password?.message && <p>{formErrors.password.message}</p>}
-            <label htmlFor="passwordConfirm">Confirm Your Password:</label>
-            <input required type="password" name="passwordConfirm" id="passwordConfirm"
-                {...register("passwordConfirm")} />
-                {formErrors?.passwordConfirm?.message && <p>{formErrors.passwordConfirm.message}</p>}
 
                 <div>
                 <button>
-                { isSubmitting ? "submitting..." : "signup"}
+                { isSubmitting ? "submitting..." : "login"}
                 </button>
                 </div>
         </form>
