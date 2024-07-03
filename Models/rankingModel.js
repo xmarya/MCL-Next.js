@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Bean from "./beanModel";
-import Roaster from "./roasterModel";
+// import Roaster from "./roasterModel";
 
 const rankingSchema = new mongoose.Schema({
     modelId: {
@@ -10,7 +10,7 @@ const rankingSchema = new mongoose.Schema({
     },
     model: {
         type: String,
-        enum: ["Bean", Roaster]
+        enum: ["Bean", "Roaster"]
     },
     rank: Number,
 },

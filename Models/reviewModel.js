@@ -89,9 +89,9 @@ reviewSchema.pre("findOneAndUpdate", function(next) {
 });
 
 reviewSchema.pre(/^find/, function(next) {
-    // this.populate({ path: "user", select: "userName image"}).populate({ path: "reviewedModel", select: "nameEn nameAr"});
+    // this.populate({ path: "user", select: "username image"}).populate({ path: "reviewedModel", select: "nameEn nameAr"});
     // 👆🏼👆🏼 this will make the reviewedModel : null in the response body
-    this.populate({ path: "user", select: "userName image"});
+    this.populate({ path: "user", select: "username image"});
     next();
 });
 

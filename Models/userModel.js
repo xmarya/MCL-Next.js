@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 import slugify from "slugify";
 import validator from "validator";
-// import bcrypt from "bcryptjs";
-// import crypto from "crypto";
+import bcrypt from "bcryptjs";
+import crypto from "crypto";
 
 const userSchema = new mongoose.Schema(
   {
-    userName: {
+    username: {
       type: String,
       required: [true, "Any user must have a name !"], // validator
       unique: true,
@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema(
     password: {
         type: String,
         required: [true, "you must have a password"],
-        minlength: [8, "your password must be at least 8 charecters"],
+        minlength: [1, "your password must be at least 8 charecters"],
         select: false
     },
     passwordConfirm: {
@@ -109,7 +109,7 @@ userSchema.virtual("reviews", {
 });
 
 userSchema.pre("save", function(next) {
-    this.slug = slugify(this.userName, {lower: true});
+    this.slug = slugify(this.username, {lower: true});
     next();
 });
 
@@ -166,7 +166,8 @@ userSchema.methods.generateRandomToken = function() {
 
 }
 
-mongoose.set("sanitizeFilter", true);
+// mongoose.set("sanitizeFilter", true); // throws TypeError: mongoose__WEBPACK_IMPORTED_MODULE_0___default(...).set is not a function
+
 const User = mongoose.models?.User || mongoose.model("User", userSchema);
 
 export default User;
