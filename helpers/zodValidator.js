@@ -26,3 +26,12 @@ export const LoginFormSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }),
   password: z.string().min(1, { message: 'Password field must not be empty.' }),
 });
+
+export const ChangePasswordSchema = z.object({
+  currentPassword: z.string(),
+  newPassword: z.string(),
+  newPasswordConfirm: z.string(),
+}).refine((data) => data.newPassword === data.newPasswordConfirm, {
+  message: "Please make sure to confirm the new password correctly",
+  path: ["newPasswordConfirm"],
+});

@@ -1,6 +1,7 @@
 "use server"
 
 import User from "@/Models/userModel";
+import { globalAppErrors } from "@/data/globalErrorsMessages";
 import { dbConnection } from "@/helpers/dbConnection";
 import { errorController } from "@/helpers/errorController";
 import { createSession } from "@/helpers/session";
@@ -23,19 +24,6 @@ export async function signup({username, email, password, passwordConfirm}){
 
 };
 
-
-const error = {
-    noUserWithThisEmail: {
-        en: "the provided email doesn't exist in our records. Please signup first to login",
-        ar: "البريد الإلكتروني غير مسجل لدينا. الرجاء تسجيل مستخدم جديد"
-    },
-
-    incorrectPassword: {
-        en: "the password isn't correct. Please try again",
-        ar: "كلمة المرور المدخلة غير صحيحة"
-    }
-}
-
 export async function login({email, password}) {
     // 1- checking email and pawword (MOVE THIS PART TO THE CLIENT-SIDE BEFORE INVOKING THE FUNCTION):
     // if (!email || !password) return next(new AppError(400, "Please provide your email and password to login !")); 
@@ -46,10 +34,10 @@ export async function login({email, password}) {
         const thisUser = await User.findOne({email}).select("+password");
 
         // 2- if the user is exist :
-        if(!thisUser) return  {error :{message: error.noUserWithThisEmail.en}};
+        if(!thisUser) return  {error :{message: globalAppErrors.noUserWithThisEmail.en}};
 
         // 3- if the password is correct:
-        if(!(await thisUser.comparePasswords(password, thisUser.password))) return {error: {message: error.incorrectPassword.ar}};
+        if(!(await thisUser.comparePasswords(password, thisUser.password))) return {error: {message: globalAppErrors.incorrectPassword.ar}};
 
         // 4- no errors? then issue a new session token:
         await createSession(thisUser.id);
