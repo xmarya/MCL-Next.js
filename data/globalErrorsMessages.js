@@ -12,5 +12,20 @@ export const globalAppErrors = {
     changePasswordIncorrect: {
         en: "The provided password does not match the current one. Please make sure to write it correctly",
         ar: "كلمة المرور المدخلة لا تتطابق مع كلمة المرور الحالية. الرجاء التأكد من كتابتها بشكل صحيح"
-    }
+    },
+
+    dbNoEmailAddress: {
+        en: "the provided email doesn't exist in our records.",
+        ar: "البريد الإلكتروني المدخل غير مسجل لدينا"
+    },
+
+    validResetToken: {
+        en: "The previous password reset request is still valid, please check your email for the link",
+        ar: "تم إرسال رابط إعادة تعيين كلمة المرور بالفعل, الرجاء التحقق من بريدك الإلكتروني"
+    },
+
+    invalidResetToken: {
+        en: "The link of reset password is invalid or has expired",
+        ar: "رابط إعادة تعيين كلمة المرور غير صحيح أو انتهت مدة صلاحيته"
+    },
 }

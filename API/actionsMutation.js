@@ -24,25 +24,24 @@ export async function signup({username, email, password, passwordConfirm}){
 
 };
 
-export async function login({email, password}) {
-    // 1- checking email and pawword (MOVE THIS PART TO THE CLIENT-SIDE BEFORE INVOKING THE FUNCTION):
-    // if (!email || !password) return next(new AppError(400, "Please provide your email and password to login !")); 
-    console.log("login", email, password);
-    try {
-        await dbConnection();
-        // 1- get the user by the provided email :
-        const thisUser = await User.findOne({email}).select("+password");
+// export async function login({email, password}) {
+//     // 1- checking email and pawword (MOVE THIS PART TO THE CLIENT-SIDE BEFORE INVOKING THE FUNCTION):
+//     // if (!email || !password) return next(new AppError(400, "Please provide your email and password to login !")); 
+//     try {
+//         await dbConnection();
+//         // 1- get the user by the provided email :
+//         const thisUser = await User.findOne({email}).select("+password");
 
-        // 2- if the user is exist :
-        if(!thisUser) return  {error :{message: globalAppErrors.noUserWithThisEmail.en}};
+//         // 2- if the user is exist :
+//         if(!thisUser) return  {error :{message: globalAppErrors.noUserWithThisEmail.en}};
 
-        // 3- if the password is correct:
-        if(!(await thisUser.comparePasswords(password, thisUser.password))) return {error: {message: globalAppErrors.incorrectPassword.ar}};
+//         // 3- if the password is correct:
+//         if(!(await thisUser.comparePasswords(password, thisUser.password))) return {error: {message: globalAppErrors.incorrectPassword.ar}};
 
-        // 4- no errors? then issue a new session token:
-        await createSession(thisUser.id);
+//         // 4- no errors? then issue a new session token:
+//         await createSession(thisUser.id);
         
-    } catch (error) {
-        throw new Error(error);
-    }
-}
+//     } catch (error) {
+//         throw new Error(error);
+//     }
+// }

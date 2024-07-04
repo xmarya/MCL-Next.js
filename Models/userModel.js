@@ -156,7 +156,6 @@ userSchema.methods.changedPasswordAfter = function(jwtTimeStamp) {
 }
 
 userSchema.methods.generateRandomToken = function() {
-  console.log("3");
   const randomToken = crypto.randomBytes(36).toString("hex");
   // save the encrypted version in or database.
   this.passwordResetToken = crypto.createHash("sha256").update(randomToken).digest("hex");

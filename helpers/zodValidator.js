@@ -35,3 +35,13 @@ export const ChangePasswordSchema = z.object({
   message: "Please make sure to confirm the new password correctly",
   path: ["newPasswordConfirm"],
 });
+
+export const EmailSchema = z.object({email: z.string().email({ message: 'Please enter a valid email.' })});
+
+export const ResetPasswordSchema = z.object({
+  newPassword: z.string(),
+  newPasswordConfirm: z.string(),
+}).refine((data) => data.newPassword === data.newPasswordConfirm, {
+  message: "Please make sure to confirm the new password correctly",
+  path: ["newPasswordConfirm"],
+});

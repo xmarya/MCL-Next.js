@@ -7,7 +7,10 @@ export default function Login() {
             <h2>login page</h2>
             <LoginForm/>
             <p>
-                doesn&apos;t have an account ? <Link href="/signup">Singup</Link>
+                Doesn&apos;t have an account ? <Link href="/signup">Singup</Link>
+            </p>
+            <p>
+                Forget your Password ? <Link href="/forgetPassword">Reset password</Link>
             </p>
 
         </div>
