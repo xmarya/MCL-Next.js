@@ -28,4 +28,9 @@ export const globalAppErrors = {
         en: "The link of reset password is invalid or has expired",
         ar: "رابط إعادة تعيين كلمة المرور غير صحيح أو انتهت مدة صلاحيته"
     },
+
+    deleteAccount: {
+        en: "Email or password is incorrect, Please try again.",
+        ar: "خطأ في البريد الإلكتروني أو كلمة المرور"
+    }
 }

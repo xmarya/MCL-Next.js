@@ -1,8 +1,9 @@
 "use server"
+
 import User from "@/Models/userModel";
 import { globalAppErrors } from "@/data/globalErrorsMessages";
 import { dbConnection } from "@/helpers/dbConnection";
-import { deleteSession, verifySession } from "@/helpers/session";
+import { createSession, deleteSession, verifySession } from "@/helpers/session";
 import {cache} from 'react';
 import crypto from "crypto";
 
@@ -149,8 +150,25 @@ export async function resetPassword({resetToken, newPassword, newPasswordConfirm
 
 }
 
-export async function deleteAccount({email, password, passwordConfirm}) {
+export async function deleteAccount({email, password}) {
+    console.log(email, password);
+    // 1) get the userId from the session:
+    const {userId} = await verifySession();
+    if(!userId) return null;
+    
+    try {
+        await dbConnection();
+        
+        const thisUser = await User.findById(userId).select("+password email");
+        console.log("🎭",thisUser);
 
+        if (email !== thisUser.email || !(await thisUser.comparePasswords(password, thisUser.password)))
+            return {error: {message: globalAppErrors.deleteAccount.en}};
+
+        await User.findByIdAndDelete(thisUser.id);
+    } catch (error) {
+        
+    }
 }
 
 export async function logout() {
