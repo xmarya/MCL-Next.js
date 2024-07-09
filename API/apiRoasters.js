@@ -55,3 +55,37 @@ export async function deleteRoaster(roasterId) {
   await Roaster.findByIdAndDelete(roasterId);
   return "roaster deleted";
 }
+
+
+export async function getNearest(userLocation) {
+
+  /*
+  the logic is to use setSearchParams() hook in a CC then sen this params to this function
+  */
+
+  // 1- Get the current location of the user :
+  // const [lat, lng] = request.params.latlng.split(","); // we're splitting the params.latlng to make it an array of 2. 
+  const [lat, lng] = userLocation.split(","); // we're splitting the params.latlng to make it an array of 2. 
+  if(!lat || !lng) return  {error: {message: "Please provide your Please provide your current location ."}};
+
+  // 2- Display the nearest roasters (within 500km - 1000km) :
+  const multiplier = 0.001;
+  // * 1 to convert them from strings to numbers.
+  const roasters = await Roaster.aggregate([ {$geoNear: { near: { type: "Point", coordinates: [lng * 1 , lat * 1]},
+                                                                  distanceField: "distance", distanceMultiplier: multiplier}},
+                                              {
+                                                  $unwind: "$locations" // to make each location object as a single document.
+                                              },
+                                              {$project: {nameEn:1, cityEn:1, "locations.branchAr":1, "locations.coordinates":1, distance:1} },
+                                              {$sort: {distance: 1}},
+                                              {$match: {distance: {$lt : 50}}}
+                                          ]);
+  /*
+  includeLocs: This option is useful when a location field contains multiple locations. To specify a field within an embedded document, use dot notation.
+  maxDistance: The maximum distance from the center point that the documents can be. MongoDB limits the results to those documents that fall within the specified distance from the center point.
+  minDistance: Optional. The minimum distance from the center point that the documents can be. MongoDB limits the results to those documents that fall outside the specified distance from the center point.
+
+  */
+
+  return roasters;
+}

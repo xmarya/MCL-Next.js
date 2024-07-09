@@ -9,3 +9,4 @@ check:
     8- the deletion of a bean or a roaster can be done by the admin only after a request from the roaster owner
     9- reset the most rated this month on the 1st of the next month
     10- the app should support the Arabic and English
+    11- show the Nearest Roasters on a map

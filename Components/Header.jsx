@@ -3,6 +3,7 @@
 import styled from "styled-components"
 // import Navigation from "./Navigation";
 import Logo from "./Logo";
+import SearchBar from "./SearchBar";
 
 const StyledHeader = styled.header`
     border-bottom: 0.1rem solid var(--colour-primary);
@@ -20,6 +21,7 @@ export default function Header({ children }) {
     return (
         <StyledHeader>
             <HeaderContainer>
+                <SearchBar/>
                 {children}
                 <Logo/>
             </HeaderContainer> 

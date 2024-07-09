@@ -8,28 +8,32 @@ export default async function Navigation() {
     <nav className="z-10 text-xl">
       <ul className="flex gap-16 items-center">
         <li>
-          <Link href="/cabins" className="hover:text-accent-400 transition-colors">
-            Cabins
+          <Link href="/beans" className="hover:text-accent-400 transition-colors">
+            Beans
           </Link>
         </li>
         <li>
-          <Link href="/about" className="hover:text-accent-400 transition-colors">
-            About
+          <Link href="/roasters" className="hover:text-accent-400 transition-colors">
+            Roasters
           </Link>
         </li>
-        
+        <li>
+          <Link href="/nearestRoasters" className="hover:text-accent-400 transition-colors">
+          Nearest Roasters
+          </Link>
+        </li>       
         <li>
           {image ?
             <Link
-            href="/account"
+            href="/dashboard"
             className="flex items-center gap-4 hover:text-accent-400 transition-colors">
             {/*<img className="h-8 w-8 rounded-full" referrerPolicy="no-referrer" src={session.user.image} alt={session.user.name} /> */}
-            <span>Guest area</span>
+            <span>لوحة التحكم</span>
           </Link>
           : <Link
-            href="/account"
+            href="/login"
             className="hover:text-accent-400 transition-colors">
-            Guest area
+            تسجيل الدخول
           </Link>}
         </li>
          

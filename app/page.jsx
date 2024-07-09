@@ -5,7 +5,7 @@ import TopTenRoasters from "@/Components/Roasters/TopTenRoasters";
 import { Suspense } from "react";
 import { IBM } from "./layout";
 
-// displays top-ten roasters/beans and latest 10 reviews
+// displays the most Rated last month & top-ten roasters/beans and latest 10 reviews
 export default async function Home() {
 
     return (
@@ -16,6 +16,7 @@ export default async function Home() {
                 {/* <TopTenRoasters/> */}
                  {/* <MostRatedBeanLastMonth/> */}
                 {/* <MostRatedRoasterLastMonth/> */}
+                {/* <LatestReviews/> */}
             </Suspense>
         </div>
     )
