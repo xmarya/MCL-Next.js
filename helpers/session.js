@@ -36,11 +36,11 @@ export async function decrypt(session) {
 }
 
 // this func is going to be invoked to create a new session after a successful signup or login process
-export async function createSession(userId) {
+export async function createSession(userId, role) {
     console.log("inside the session creator");
     const expires = cookieOpt.expires;
     console.log("1");
-    const token = await encrypt({userId, expires});
+    const token = await encrypt({userId, role, expires});
     console.log("3", token);
     
     cookies().set(cookieOpt.name, token, {...cookieOpt});
@@ -51,9 +51,9 @@ export async function verifySession() {
     const cookie = cookies().get(cookieOpt.name)?.value;
     const session = await decrypt(cookie);
 
-    if(!session?.userId) redirect("/login");
+    // if(!session?.userId) redirect("/login");
 
-    return { userId: session.userId}
+    return session; 
 
 }
 

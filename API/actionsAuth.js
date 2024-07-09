@@ -8,6 +8,13 @@ import {cache} from 'react';
 import crypto from "crypto";
 
 
+// export async function googleLogin() {
+//     console.log("googleLogin1");
+//     // redirect.replace("/google-account-login");
+//     // console.log("googleLogin2");
+//     await signIn("google");
+// }
+
 
 export async function login({email, password}) {
     // 1- checking email and pawword (MOVE THIS PART TO THE CLIENT-SIDE BEFORE INVOKING THE FUNCTION):
@@ -24,7 +31,7 @@ export async function login({email, password}) {
         if(!(await thisUser.comparePasswords(password, thisUser.password))) return {error: {message: globalAppErrors.incorrectPassword.ar}};
 
         // 4- no errors? then issue a new session token:
-        await createSession(thisUser.id);
+        await createSession(thisUser.id, thisUser.role);
         
     } catch (error) {
         throw new Error(error);
@@ -76,7 +83,7 @@ export async function changePassword({currentPassword, newPassword, newPasswordC
         await thisUser.save();
         
         // 5- Generate a new JWT token and send it back to the browser header to log the user in:
-        await createSession(thisUser.id);
+        await createSession(thisUser.id, thisUser.role);
 
     } catch (error) {
         throw new Error(error);
@@ -150,6 +157,10 @@ export async function resetPassword({resetToken, newPassword, newPasswordConfirm
 
 }
 
+export async function logout() {
+    await deleteSession();
+}
+
 export async function deleteAccount({email, password}) {
     console.log(email, password);
     // 1) get the userId from the session:
@@ -166,11 +177,8 @@ export async function deleteAccount({email, password}) {
             return {error: {message: globalAppErrors.deleteAccount.en}};
 
         await User.findByIdAndDelete(thisUser.id);
+        await logout();
     } catch (error) {
-        
+        throw new Error(error);
     }
-}
-
-export async function logout() {
-    await deleteSession();
 }

@@ -1,4 +1,26 @@
+import StyledComponentsRegistry from "./_styles/registy";
+import "@/app/_styles/globals.css"
+import Header from "@/Components/Header";
+import Navigation from "@/Components/Navigation";
+import { IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google"
 import { Toaster } from "react-hot-toast";
+
+
+export const IBM = IBM_Plex_Sans_Arabic({
+  variable: "--font-heading",
+  subsets: ["arabic"],
+  style: "normal",
+  weight: ["100", "200", "300", "400", "500", "600", "700"],
+  display: "swap"
+});
+
+export const Noto = Noto_Naskh_Arabic({
+  variable: "--font-paragraph",
+  subsets: ["arabic"],
+  style: "normal",
+  weight: ["400", "500", "600", "700"],
+  display: "swap"
+});
 
 export const metadata = {
   title: 'Next.js',
@@ -9,13 +31,20 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>
-        <header></header>
-        <main>
-          <Toaster position="top-right"/>
-        {children}
-        </main>
-      </body>
+      <StyledComponentsRegistry>
+        <body className="h-svh flex flex-col">
+          <Header>
+            <Navigation/>
+          </Header>
+          {/* <main className="grid-container"> */}
+          <main>
+            <Toaster position="top-right"/>
+          { children }
+          </main>
+        </body>
+      </StyledComponentsRegistry>
     </html>
   )
 }
+
+ 

@@ -15,14 +15,17 @@ export async function middleware(request) {
     const token = await decrypt(cookie);
     console.log("🔑", token);
 
+    // const session = await auth();
+    // console.log("🔎",session);
     // 2) no? redirect the user:
     if(!token?.userId) return NextResponse.redirect(new URL(`/login`, request.nextUrl.origin));
 
     
     // 3) yes? let the user access the protected route:
     return NextResponse.next();
-    // return auth(request);
   }
+
+  // if(pathname === "/google-account-login") return auth(request);
 
 
   return NextResponse.next();
