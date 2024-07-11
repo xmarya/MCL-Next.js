@@ -22,6 +22,7 @@ const TableColumns = styled.div`
 
 const StyledHeader = styled(TableColumns)`
   background-color: var(--colour-grey-light-1);
+  text-align: center;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.4px;
@@ -31,7 +32,8 @@ const StyledHeader = styled(TableColumns)`
 `;
 
 const StyledRow = styled(TableColumns)`
-  padding: 1.2rem 2.4rem;
+  text-align: center;
+  padding: 2.4rem 4rem;
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--colour-secondary-dark-2);

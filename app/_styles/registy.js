@@ -20,8 +20,10 @@ export default function StyledComponentsRegistry({ children }) {
  
   return (
     <StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+      <StyleSheetManager shouldForwardProp={(prop) => prop !== 'variation'}>
       <GlobalStyles/>
       {children}
+      </StyleSheetManager>
     </StyleSheetManager>
   )
 }

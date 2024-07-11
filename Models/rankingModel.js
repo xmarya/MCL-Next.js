@@ -26,7 +26,8 @@ const rankingSchema = new mongoose.Schema({
 rankingSchema.index({rank: -1, model: 1});
 
 rankingSchema.pre(/^find/, function(next) {
-    this.populate({path: "modelId", select: "nameEn nameAr image ratingsAverage roaster slug"});
+    // this.populate({path: "modelId", select: "nameEn nameAr image ratingsAverage roaster slug"});
+    this.populate({path: "modelId"});
     next();
 });
 

@@ -1,3 +1,4 @@
+import AllBeans from "@/Components/Beans/AllBeans";
 import BeansOperations from "@/Components/Beans/BeansOperations";
 import BeansTable from "@/Components/Beans/BeansTable";
 import { Suspense } from "react";
@@ -8,6 +9,7 @@ export const metadata = {
 };
 
 export default function Beans({ searchParams }) {
+  console.log(searchParams);
   let sortBy;
 
   if (searchParams.hasOwnProperty("sortBy")) {
@@ -20,7 +22,8 @@ export default function Beans({ searchParams }) {
       <h1>this h1 is outside the Suspence</h1>
       <BeansOperations />
       <Suspense fallback="Loading...">
-        <BeansTable filter={searchParams} sort={sortBy} />
+        {/* <BeansTable filter={searchParams} sort={sortBy} /> */}
+        <AllBeans filter={searchParams} sort={sortBy}/>
       </Suspense>
     </div>
   );

@@ -8,6 +8,6 @@ export async function getTopTen(model, limit = 10) {
     .limit(limit)
     .select("-__v");
   // if(model === "Bean") await mongoose.model(model).populate("roaster")
-
-  return topTen;
+  
+  return JSON.parse(JSON.stringify(topTen));
 }
