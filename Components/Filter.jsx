@@ -1,4 +1,8 @@
+"use client"
+
 export default function Filter() {
+        //http://localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&isRare=true
+
     return (
         <div>
             

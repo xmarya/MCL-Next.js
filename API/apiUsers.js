@@ -6,9 +6,11 @@ import { verifySession } from "@/helpers/session";
 
 
 export async function getCurrentUser() {
-    const {userId} =  await verifySession();
     
-    if(!userId) return null;
+    const session =  await verifySession();
+    if(!session) return null;
+
+    const { userId } = session;
 
     try {
         await dbConnection();

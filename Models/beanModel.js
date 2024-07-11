@@ -118,15 +118,16 @@ BeanSchema.virtual("reviews", {
   foreignField: "reviewedModel"
 });
 
+BeanSchema.pre(/^find/, function(next) {
+  this.populate({path: "roaster", select: "nameEn nameAr image slug"});
+  next();
+});
+
 BeanSchema.pre("save", function(next) {
   console.log("here is pre(save) slug, this may cuase an error");
     this.slug = slugify(this.nameEn, {lower: true}) ;
-    // this.slug = slug.concat("-", this.roaster.name);
-
     next();
 });
-
-
 
 BeanSchema.statics.setRanking = async function() {  
   const beans = await this.aggregate([{ $match: {ratingsQuantity : { $gt: 0} } }]);

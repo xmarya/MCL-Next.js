@@ -1,7 +1,8 @@
 import StyledComponentsRegistry from "./_styles/registy";
 import "@/app/_styles/globals.css"
-import Header from "@/Components/Header";
-import Navigation from "@/Components/Navigation";
+import Header from "@/Components/Headers/Header";
+import Navigation from "@/Components/Headers/Navigation";
+import QuickAccess from "@/Components/Headers/QuickAccess";
 import { IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google"
 import { Toaster } from "react-hot-toast";
 
@@ -34,12 +35,11 @@ export default function RootLayout({ children }) {
       <StyledComponentsRegistry>
         <body className="h-svh flex flex-col">
           <Header>
-            <Navigation/>
+            <QuickAccess/>
           </Header>
-          {/* <main className="grid-container"> */}
           <main>
             <Toaster position="top-right"/>
-          { children }
+            { children }
           </main>
         </body>
       </StyledComponentsRegistry>

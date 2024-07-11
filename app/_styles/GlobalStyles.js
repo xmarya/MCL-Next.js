@@ -25,7 +25,8 @@ const GlobalStyles = createGlobalStyle`
     overflow-x: hidden;
     scroll-behavior: smooth;
 
-    background-color: khaki;
+    background-color: var(--colour-grey-light-1);
+    color: var(--main-font-colour);
 
   }
   

@@ -10,9 +10,9 @@ export default async function Home() {
 
     return (
         <div>
-            <h1 className={`${IBM.className} main-heading-52 text-center`}>الصفحة الرئيسية</h1>
+            <h1 className={`${IBM.variable} main-heading-52 text-center`}>الصفحة الرئيسية</h1>
             <Suspense fallback="Loading...">
-                {/* <TopTenBeans/> */}
+                <TopTenBeans/>
                 {/* <TopTenRoasters/> */}
                  {/* <MostRatedBeanLastMonth/> */}
                 {/* <MostRatedRoasterLastMonth/> */}

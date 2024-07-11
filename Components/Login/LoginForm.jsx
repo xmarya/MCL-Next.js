@@ -8,6 +8,11 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import {login } from "@/API/actionsAuth";
 
+
+const defaultUser = {
+  email: "admin@admin.admin",
+  password: "123"
+}
 export default function LoginForm() {
   const router = useRouter();
   const {
@@ -33,6 +38,7 @@ export default function LoginForm() {
       <form onSubmit={handleSubmit(handleFormSubmit)}>
       <label htmlFor="email">Email:</label>
       <input
+      defaultValue={defaultUser.email}
         required
         type="email"
         name="email"
@@ -42,6 +48,7 @@ export default function LoginForm() {
       {formErrors?.email?.message && <p>{formErrors.email.message}</p>}
       <label htmlFor="password">Password:</label>
       <input
+      defaultValue={defaultUser.password}
         required
         type="password"
         name="password"

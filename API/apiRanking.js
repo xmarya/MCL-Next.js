@@ -1,6 +1,5 @@
 import { dbConnection } from "@/helpers/dbConnection";
 import Ranking from "@/Models/rankingModel";
-import mongoose from "mongoose";
 
 export async function getTopTen(model, limit = 10) {
   await dbConnection();

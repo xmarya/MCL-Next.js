@@ -1,13 +1,23 @@
-import { getBeans } from "@/API/apiBeans";
+"use client"
 
-export default async function BeansTable({filter, sort}) {
-    //http://localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&isRare=true
-    const beans = await getBeans(filter, sort);
-    if(!beans.length) return <p>No data were found</p>
+import Table from "../Table";
+import BeanRow from "./BeanRow";
+
+export default function BeansTable({beans}) {
+
     return (
-        <div>{
-                Object.values(beans).map(bean => console.log(bean))
-            }</div>
+        <div>
+            <Table columns="0.3fr 0.6fr 0.8fr 0.3fr 2.2fr">
+                <Table.Header>
+                    <div>الترتيب</div>
+                    <div>صورة</div>
+                    <div>المحصول</div>
+                    <div>التقييم</div>
+                    <div>معلومات</div>
+                </Table.Header>
+                <Table.Body data={beans} render={bean => <BeanRow bean={bean} key={bean.id}/>}/>
+            </Table>
+        </div>
     )
 }
 

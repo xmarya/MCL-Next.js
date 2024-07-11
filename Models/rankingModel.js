@@ -15,7 +15,8 @@ const rankingSchema = new mongoose.Schema({
     rank: Number,
 },
 {
-    strictQuery: true
+    strictQuery: true,
+    strictPopulate: false
 },
 {
     toJSON: { virtuals: true },
@@ -25,7 +26,7 @@ const rankingSchema = new mongoose.Schema({
 rankingSchema.index({rank: -1, model: 1});
 
 rankingSchema.pre(/^find/, function(next) {
-    this.populate({path: "modelId", select: "nameEn nameAr image ratingsQuantity ratingsAverage roaster"});
+    this.populate({path: "modelId", select: "nameEn nameAr image ratingsAverage roaster slug"});
     next();
 });
 
