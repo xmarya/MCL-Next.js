@@ -1,8 +1,8 @@
 import StyledComponentsRegistry from "./_styles/registy";
 import "@/app/_styles/globals.css"
 import Header from "@/Components/Headers/Header";
-import Navigation from "@/Components/Headers/Navigation";
 import QuickAccess from "@/Components/Headers/QuickAccess";
+import { NextUIContext } from "@/hooks/contexts/NextUIContext";
 import { IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google"
 import { Toaster } from "react-hot-toast";
 
@@ -39,7 +39,9 @@ export default function RootLayout({ children }) {
           </Header>
           <main>
             <Toaster position="top-right"/>
+            <NextUIContext>
             { children }
+            </NextUIContext>
           </main>
         </body>
       </StyledComponentsRegistry>
