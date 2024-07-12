@@ -36,7 +36,6 @@ const Img = styled.img`
 `;
 
 const Bean = styled.div`
-  font-size: 1.6rem;
   font-weight: 600;
   color: var(--colour-grey-600);
 `;
@@ -53,26 +52,29 @@ const Rating = styled.div`
 
 const NotesTag = styled.div`
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 0.8rem;
 
 `;
 
 
 export default function BeanRow({ bean }) {
-    const { rank, modelId: {_id: id, image, nameEn, nameAr, notesEn, notesAr, slug, ratingsAverage, roaster}} = bean;
+    const { rank, modelId: {_id: id, image, nameEn, nameAr, notesEn, notesAr, ratingsAverage, roaster}} = bean;
 
     return (
         <Table.Row role="row">
           <Rank>{rank}</Rank>
           <Img src={roaster.image}/>
-          <Bean>{nameAr}</Bean>
-          <div>{roaster.nameAr}</div>
+          <Link href={`/beans/${id}`}>
+            <Bean>{nameAr}</Bean>
+          </Link>
+          <Link href={`/roasters/${roaster._id}`}>
+            <div>{roaster.nameAr}</div>
+          </Link>
           <Rating>{ratingsAverage}</Rating>
           <NotesTag>
-            {notesAr.map(note => <Link className="border-spacing-1 border-b border-solid border-[--colour-secondary-dark-2]" key={note} href={`/beans?noteAr=${note}`}>{note}</Link>)}
+            {notesAr.map(note => <Link className="border-spacing-1 border-b border-solid border-[--colour-secondary-dark-2]" key={note} href={`/beans?notesAr=${note}`}>{note}</Link>)}
           </NotesTag>
         </Table.Row>
     )

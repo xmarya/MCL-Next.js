@@ -1,4 +1,5 @@
 import { getOneRoaster } from "@/API/apiRoasters";
+import { Suspense } from "react";
 
 export default async function Roaster({params}) {
     const {roaster, reviews, beans, ranking} = await getOneRoaster(params.roasterId);
@@ -8,6 +9,9 @@ export default async function Roaster({params}) {
     return (
         <div>
             <h1>[roasterId] comp</h1>
+            <Suspense fallback="loading...">
+            <span>{roaster.nameEn}</span>
+            </Suspense>
         </div>
     )
 }
