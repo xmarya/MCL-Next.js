@@ -72,7 +72,7 @@ export default function BeanRow({ bean }) {
           <div>{roaster.nameAr}</div>
           <Rating>{ratingsAverage}</Rating>
           <NotesTag>
-            {notesAr.map(note => <Link className="border-spacing-1 border-b border-solid border-[--colour-secondary-dark-2]" key={note} href={`/beans?noteAr=${note}`}>{note}</Link>)}
+            {notesAr.map(note => <Link className="border-spacing-1 border-b border-solid border-[--colour-secondary-dark-2]" key={note} href={`/beans?notesAr=${note}`}>{note}</Link>)}
           </NotesTag>
         </Table.Row>
     )
