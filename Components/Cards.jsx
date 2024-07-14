@@ -14,16 +14,4 @@ const Cards = styled.ul`
   padding: 1.5rem;
 `;
 
-
-// export default function Cards({ children }) {
-//   // the general layout that holde whatever kind of cards (beans or roasters)
-//   return (
-//     <>
-//       <StyledCards>
-//             {children}
-//       </StyledCards>
-//     </>
-//   );
-// }
-
 export default Cards;

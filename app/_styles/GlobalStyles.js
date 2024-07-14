@@ -93,9 +93,7 @@ const GlobalStyles = createGlobalStyle`
 }
 
 .icon {
-  fill: #fff;
-  stroke: #fff;
-  stroke-width: 0.1;
+  stroke-width: 0.9;
   width: 4.3rem;
   height: 4.3rem;
 }

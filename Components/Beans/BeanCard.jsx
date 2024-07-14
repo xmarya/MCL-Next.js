@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import styled from "styled-components";
+import { HeartIcon } from "@heroicons/react/24/outline";
+import { useState } from "react";
 
 const StyledBeanCard = styled.li`
   background-color: bisque;
@@ -15,11 +17,17 @@ const StyledBeanCard = styled.li`
   -ms-flex-direction: column;
 `;
 
+const CardHeader = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.4rem;
+
+`;
 
 const Ranking = styled.h3`
-  font-size: 3rem;
+  font-size: 3.6rem;
   color: #80808093;
-  padding: 1.4rem;
 `;
 
 const ImageContainer = styled.div`
@@ -94,15 +102,23 @@ const CardButton = styled.button`
 
 
 export default function BeanCard({bean}) {
-  const locale = "ar";
+  // temporary logic:
+  const [liked, setLiked] = useState(false); // in later stage this should be a removed and replased with an API to add the bean to the user faves list.
+  const locale = "ar"; // in later stage this wil be comming from the [locale] params.
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
 //   console.log("name"+withLocale);
 // console.log(bean["name"+withLocale]);
-  const {_id: id, image, drinkTypeEn, drinkTypeAr, ratingsAverage, ratingsQuantity, isRare } = bean;
+  const {_id: id, image, ratingsAverage, ratingsQuantity, isRare } = bean;
+  const drinkType = bean["drinkType"+withLocale];
 
   return (
     <StyledBeanCard>
-      <Ranking>{bean.ranking}</Ranking>
+      <CardHeader>
+        <Ranking>{bean.ranking}</Ranking>
+        <button onClick={() => setLiked(!liked)}>
+          <HeartIcon className={`icon stroke-red-500 hover:fill-red-500 ${liked && "fill-red-500"}`}/>
+        </button>
+      </CardHeader>
       <div className="relative">
         <ImageContainer>
           <CardImage src="/roasters/soil.jpg" alt={bean["name"+withLocale]}/>
@@ -124,7 +140,7 @@ export default function BeanCard({bean}) {
         </Details>
         <Details>
           <span>المشروب : </span>
-          {drinkTypeAr.length > 1 ? drinkTypeAr[0]+"، "+drinkTypeAr[1] : drinkTypeAr}
+          {drinkType.length > 1 ? drinkType[0]+"، "+ drinkType[1] : drinkType}
         </Details>
       </DetailsContainer>
       <CardFooter>
