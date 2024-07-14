@@ -65,7 +65,7 @@ export default function BeanRow({ bean }) {
     return (
         <Table.Row role="row">
           <Rank>{rank}</Rank>
-          <Img src={roaster.image}/>
+          <Img src={`/roasters/${roaster.image}`}/>
           <Link href={`/beans/${id}`}>
             <Bean>{nameAr}</Bean>
           </Link>

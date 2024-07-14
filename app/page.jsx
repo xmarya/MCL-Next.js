@@ -13,6 +13,7 @@ export default async function Home() {
             <h1 className={`${IBM.variable} main-heading-52 text-center`}>الصفحة الرئيسية</h1>
             <Suspense fallback="Loading...">
                 <TopTenBeans/>
+                <TopTenRoasters/>
                 {/* <TopTenRoasters/> */}
                  {/* <MostRatedBeanLastMonth/> */}
                 {/* <MostRatedRoasterLastMonth/> */}

@@ -16,7 +16,7 @@ export async function getBeans(filter = {}, sortBy = "ranking") {
   const beans = await Bean.find(filter).sort(sortBy).select("-__v");
 
   if (!beans) return "No matched data";
-  return beans;
+  return JSON.parse(JSON.stringify(beans));
 }
 export async function getOneBean(beanId) {
   await dbConnection();

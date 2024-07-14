@@ -1,16 +1,21 @@
-import { getRoasters } from "@/API/apiRoasters";
+"use client"
 
-export default async function RoastersTable({ filter, sortBy}) {
+import Table from "../Table";
+import RoasterRow from "./RoasterRow";
 
-    const roasters = await getRoasters(filter, sortBy);
+export default function RoastersTable({roasters}) {
 
-    if(!roasters.length) return <p>No data were found</p>
-    console.log(roasters.length);
-    console.log(typeof roasters);
     return (
         <div>
-            <h1>RoastersTable comp</h1>
-            {/* {roasters} */}
+            <Table columns="1fr 2fr 1fr 1fr">
+                <Table.Header>
+                    <div>الترتيب</div>
+                    <div>صورة</div>
+                    <div>المحمصة</div>
+                    <div>التقييم</div>
+                </Table.Header>
+                <Table.Body data={roasters} render={roaster => <RoasterRow roaster={roaster} key={roaster._id}/>}/>
+            </Table>
         </div>
     )
 }

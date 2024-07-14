@@ -1,3 +1,4 @@
+import AllRoasters from "@/Components/Roasters/AllRoasters";
 import RoastersOperations from "@/Components/Roasters/RoastersOperations";
 import RoastersTable from "@/Components/Roasters/RoastersTable";
 import { Suspense } from "react";
@@ -13,7 +14,7 @@ export default async function Roasters({ searchParams }) {
         <div>
             <RoastersOperations/>
             <Suspense>
-                <RoastersTable filter={searchParams} sortBy={sortBy}/>
+                <AllRoasters/>
             </Suspense>
         </div>
     )

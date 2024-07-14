@@ -1,6 +1,5 @@
 import AllBeans from "@/Components/Beans/AllBeans";
 import BeansOperations from "@/Components/Beans/BeansOperations";
-import BeansTable from "@/Components/Beans/BeansTable";
 import { Suspense } from "react";
 
 export const metadata = {
@@ -9,7 +8,6 @@ export const metadata = {
 };
 
 export default function Beans({ searchParams }) {
-  console.log(searchParams);
   let sortBy;
 
   if (searchParams.hasOwnProperty("sortBy")) {
@@ -17,12 +15,12 @@ export default function Beans({ searchParams }) {
     delete searchParams.sortBy;
   }
 
+  // the operations on the right side
+  // maybe it's best to make create a layout.jsx and make it a grid container
   return (
-    <div>
-      <h1>this h1 is outside the Suspence</h1>
-      <BeansOperations />
+    <div className="h-full grid grid-cols-[0.2fr_1fr] gap-2">
+      <BeansOperations/>
       <Suspense fallback="Loading...">
-        {/* <BeansTable filter={searchParams} sort={sortBy} /> */}
         <AllBeans filter={searchParams} sort={sortBy}/>
       </Suspense>
     </div>

@@ -3,10 +3,11 @@ import SortBy from "../SortBy";
 
 export default function BeansOperations({ filterOptions, sortOptions }) {
   return (
-    <div>
+    <aside className="bg-fuchsia-400 col-span-1">
       {/* the tow below are ones to be CC */}
       <Filter />
       <SortBy />
-    </div>
+      <div>kfdligorehoigjwpofk</div>
+    </aside>
   );
 }

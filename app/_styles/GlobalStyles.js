@@ -81,7 +81,7 @@ const GlobalStyles = createGlobalStyle`
 
   .text-13 {
     font-size: 1.3rem;
-    font-weight: 500;
+    font-weight: 800;
     line-height: 1.6;
   }
 
