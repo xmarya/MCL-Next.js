@@ -5,6 +5,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
+import RatingStars from "../RatingStars";
 
 const StyledBeanCard = styled.li`
   background-color: bisque;
@@ -72,30 +73,31 @@ const Details = styled.div`
 `;
 
 const CardFooter = styled.div`
-  background-color: #f7f7f7;
-  padding: 2.5rem 3rem;
-  border-top: 1px solid #f1f1f1;
   font-size: 1.4rem;
   display: grid;
   grid-template-columns: auto 1fr;
   grid-column-gap: 1rem;
   grid-row-gap: 1rem;
+  padding: 2.5rem 1rem;
   margin-top: auto;
 
   background-color: lightcoral;
 `;
 
 const Rating = styled.div`
+  direction: ltr;
   grid-row: 2 / 3;
-
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: lemonchiffon;
 `;
 
 const CardButton = styled.button`
   grid-row: 1 / 3;
-  justify-self: end;
-  -ms-flex-item-align: center;
   align-self: center;
+  justify-self: end;
 
   background-color: lightsalmon;
 `;
@@ -144,7 +146,11 @@ export default function BeanCard({bean}) {
         </Details>
       </DetailsContainer>
       <CardFooter>
-        <Rating>{ratingsAverage}</Rating>
+        <Rating>
+          {ratingsAverage}
+          <RatingStars rating={ratingsAverage}/>
+          <span className="text-base mr-2">({ratingsQuantity})</span>
+        </Rating>
         <CardButton>
           <Link href={`/beans/${id}`}>عرض المحصول</Link>
         </CardButton>

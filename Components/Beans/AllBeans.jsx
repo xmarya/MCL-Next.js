@@ -1,5 +1,5 @@
 import { getBeans } from "@/API/apiBeans";
-import Cards from "../Cards";
+import Cards from "../Card/Cards";
 import BeanCard from "./BeanCard";
 
 export default async function AllBeans({ filter, sort }) {
@@ -7,10 +7,10 @@ export default async function AllBeans({ filter, sort }) {
   console.log(beans.length);
 
   return (
-      <Cards>
-        {beans.map(bean  => (
-          <BeanCard key={bean._id} bean={bean} />
-        ))}
-      </Cards>
+    <Cards>
+      {beans.map((bean) => (
+        <BeanCard key={bean._id} bean={bean} />
+      ))}
+    </Cards>
   );
 }
