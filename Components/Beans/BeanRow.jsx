@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Table from "../Table";
 import styled from "styled-components";
+import { Tag, TagsContainer } from "../Tag";
 
 /*
 {
@@ -50,14 +51,6 @@ const Rating = styled.div`
   font-weight: 600;
 `;
 
-const NotesTag = styled.div`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.8rem;
-
-`;
-
 
 export default function BeanRow({ bean }) {
     const { rank, modelId: {_id: id, image, nameEn, nameAr, notesEn, notesAr, ratingsAverage, roaster}} = bean;
@@ -65,7 +58,9 @@ export default function BeanRow({ bean }) {
     return (
         <Table.Row role="row">
           <Rank>{rank}</Rank>
+          <Link href={`/beans/${id}`}>
           <Img src={`/roasters/${roaster.image}`}/>
+          </Link>
           <Link href={`/beans/${id}`}>
             <Bean>{nameAr}</Bean>
           </Link>
@@ -73,9 +68,9 @@ export default function BeanRow({ bean }) {
             <div>{roaster.nameAr}</div>
           </Link>
           <Rating>{ratingsAverage}</Rating>
-          <NotesTag>
-            {notesAr.map(note => <Link className="border-spacing-1 border-b border-solid border-[--colour-secondary-dark-2]" key={note} href={`/beans?notesAr=${note}`}>{note}</Link>)}
-          </NotesTag>
+          <TagsContainer>
+            {notesAr.map((note, index) => index < 4 && <Tag key={index}><Link href={`/beans?notesAr=${note}`}>{note}</Link></Tag>)}
+          </TagsContainer>
         </Table.Row>
     )
 }

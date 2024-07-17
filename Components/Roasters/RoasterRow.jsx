@@ -62,7 +62,9 @@ export default function RoasterRow({roaster}) {
     return (
         <Table.Row role="row">
           <Rank>{rank}</Rank>
+          <Link href={`/roasters/${id}`}>
           <Img src={`/roasters/${image}`}/>
+          </Link>
           <Link href={`/roasters/${id}`}>
             <Roaster>{nameAr}</Roaster>
           </Link>

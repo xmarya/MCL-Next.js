@@ -4,8 +4,6 @@ import BeanCard from "./BeanCard";
 
 export default async function AllBeans({ filter, sort }) {
   const beans = await getBeans(filter, sort);
-  console.log(beans.length);
-
   return (
     <Cards>
       {beans.map((bean) => (

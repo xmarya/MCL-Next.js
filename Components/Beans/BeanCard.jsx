@@ -1,106 +1,26 @@
 "use client"
 
 import Image from "next/image";
-import Link from "next/link";
-import styled from "styled-components";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import RatingStars from "../RatingStars";
+import CardHeader from "../Card/CardHeader";
+import CardRanking from "../Card/CardRanking";
+import CardImage from "../Card/CardImage";
+import CardDetails from "../Card/CardDetails";
+import CardName from "../Card/CardName";
+import CardFooter from "../Card/CardFooter";
+import Rating from "../Rating";
+import CardButton from "../Card/CardButton";
 
-const StyledBeanCard = styled.li`
-  background-color: bisque;
-  border-radius: 3px;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.1);
-  display: flex;
-  flex-direction: column;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-`;
-
-const CardHeader = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.4rem;
-
-`;
-
-const Ranking = styled.h3`
-  font-size: 3.6rem;
-  color: #80808093;
-`;
-
-const ImageContainer = styled.div`
-  position: relative;
-  height: 22rem;
-`;
-
-const CardImage = styled.img`
-  -o-object-fit: cover;
-  object-fit: cover;
-  height: 100%;
-  width: 100%;
-`;
-
-const DetailsContainer = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-row-gap: 1.5rem;
-  grid-column-gap: 2rem;
-  padding: 2.5rem 3rem;
-
-  background-color: lemonchiffon;
-`;
-
-const CradName = styled.h4`
-  font-size: 1.6rem;
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 700;
-  grid-column: 1 / -1;
-
-  background-color: lime;
-`;
-
-const Details = styled.div`
-  font-size: 1.3rem;
-  display: flex;
-  align-items: center;
-
-  background-color: limegreen;
-`;
-
-const CardFooter = styled.div`
-  font-size: 1.4rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-column-gap: 1rem;
-  grid-row-gap: 1rem;
-  padding: 2.5rem 1rem;
-  margin-top: auto;
-
-  background-color: lightcoral;
-`;
-
-const Rating = styled.div`
-  direction: ltr;
-  grid-row: 2 / 3;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: lemonchiffon;
-`;
-
-const CardButton = styled.button`
-  grid-row: 1 / 3;
-  align-self: center;
-  justify-self: end;
-
-  background-color: lightsalmon;
-`;
+// const StyledBeanCard = styled.li`
+//   background-color: bisque;
+//   border-radius: 3px;
+//   display: flex;
+//   flex-direction: column;
+//   /* -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   -ms-flex-direction: column; */
+// `;
 
 
 export default function BeanCard({bean}) {
@@ -110,53 +30,46 @@ export default function BeanCard({bean}) {
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
 //   console.log("name"+withLocale);
 // console.log(bean["name"+withLocale]);
-  const {_id: id, image, ratingsAverage, ratingsQuantity, isRare } = bean;
+  const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare } = bean;
   const drinkType = bean["drinkType"+withLocale];
 
   return (
-    <StyledBeanCard>
+    // <StyledBeanCard>
+    <li className="bg-emerald-200 flex flex-col rounded-md">
       <CardHeader>
-        <Ranking>{bean.ranking}</Ranking>
+        <CardRanking ranking={ranking}/>
         <button onClick={() => setLiked(!liked)}>
           <HeartIcon className={`icon stroke-red-500 hover:fill-red-500 ${liked && "fill-red-500"}`}/>
         </button>
       </CardHeader>
-      <div className="relative">
-        <ImageContainer>
-          <CardImage src="/roasters/soil.jpg" alt={bean["name"+withLocale]}/>
-        </ImageContainer>
-      </div>
-      <DetailsContainer>
-      <CradName>{bean["name"+withLocale]}</CradName>
-        <Details>
+      <CardImage>
+        <img className="w-full h-full object-cover" src="/roasters/soil.jpg" alt={bean["name"+withLocale]}/>
+      </CardImage>
+      <CardDetails>
+        <CardName cardName={bean["name"+withLocale]}/>
+        <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المنشأ : </span>
           {bean["origin"+withLocale]}
-        </Details>
-        <Details>
+        </div>
+        <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>السلالة : </span>
           {bean["variety"+withLocale]}
-        </Details>
-        <Details>
+        </div>
+        <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المعالجة : </span>
           {bean["typeOfProcess"+withLocale]}
-        </Details>
-        <Details>
+        </div>
+        <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المشروب : </span>
           {drinkType.length > 1 ? drinkType[0]+"، "+ drinkType[1] : drinkType}
-        </Details>
-      </DetailsContainer>
+        </div>
+      </CardDetails>
       <CardFooter>
-        <Rating>
-          {ratingsAverage}
-          <RatingStars rating={ratingsAverage}/>
-          <span className="text-base mr-2">({ratingsQuantity})</span>
-        </Rating>
-        <CardButton>
-          <Link href={`/beans/${id}`}>عرض المحصول</Link>
-        </CardButton>
+        <Rating ratingAvg={ratingsAverage} ratingQuant={ratingsQuantity}/>
+        <CardButton resourse="beans" id={id} text="عرض المحصول"/>
       </CardFooter>
-        
-    </StyledBeanCard>
+      </li>
+    // </StyledBeanCard>
     )
 }
 

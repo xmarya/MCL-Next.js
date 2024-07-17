@@ -40,7 +40,17 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: [true, "the review must have a model of Bean or Roaster"],
         enum: ["Bean", "Roaster"]
-    }
+    },
+    likes: {
+        type: Number,
+        default: 0
+        //users:[]
+    },
+    dislikes: {
+        type: Number,
+        default: 0
+        //users:[]
+    },
      
 },
 {
