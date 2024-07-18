@@ -108,7 +108,8 @@ userSchema.virtual("reviews", {
   foreignField: "user"
 });
 
-userSchema.pre("save", function(next) {
+userSchema.pre("save", function(next, options) {
+    if (!options.validateBeforeSave) next();
     this.slug = slugify(this.username, {lower: true});
     next();
 });

@@ -1,5 +1,22 @@
 import { dbConnection } from "@/helpers/dbConnection";
 
+
+export async function getAll(Model) {
+
+}
+
+export async function getOne({Model, docId}) {
+
+}
+
+export async function updateOne({Model, docId}) {
+
+}
+
+export async function deleteOne({Model, docId}) {
+
+}
+
 export async function getMostRatedLastMonth(Model) {
   await dbConnection();
   const topRated = await Model.aggregate([

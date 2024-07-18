@@ -11,17 +11,7 @@ import CardName from "../Card/CardName";
 import CardFooter from "../Card/CardFooter";
 import Rating from "../Rating";
 import CardButton from "../Card/CardButton";
-
-// const StyledBeanCard = styled.li`
-//   background-color: bisque;
-//   border-radius: 3px;
-//   display: flex;
-//   flex-direction: column;
-//   /* -webkit-box-orient: vertical;
-//   -webkit-box-direction: normal;
-//   -ms-flex-direction: column; */
-// `;
-
+import { updateFave } from "@/API/actionsMutation";
 
 export default function BeanCard({bean}) {
   // temporary logic:
@@ -33,12 +23,19 @@ export default function BeanCard({bean}) {
   const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare } = bean;
   const drinkType = bean["drinkType"+withLocale];
 
+  async function handleHearts() {
+    console.log("♥");
+    const result = await updateFave("Bean", id);
+    // how to revalidate ONLY this card?
+  }
+
   return (
     // <StyledBeanCard>
     <li className="bg-emerald-200 flex flex-col rounded-md">
       <CardHeader>
         <CardRanking ranking={ranking}/>
-        <button onClick={() => setLiked(!liked)}>
+        {/* <button onClick={() => setLiked(!liked)}> */}
+        <button onClick={handleHearts}>
           <HeartIcon className={`icon stroke-red-500 hover:fill-red-500 ${liked && "fill-red-500"}`}/>
         </button>
       </CardHeader>

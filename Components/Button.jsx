@@ -56,8 +56,8 @@ const Button = styled.button`
   border-radius: 0.3rem;
   box-shadow: var(--shadow-sm);
 
-  ${(props) => sizes[props.size]}
-  ${(props) => btnTypes[props.btnType]}
+  ${(props) => sizes[props.$size]}
+  ${(props) => btnTypes[props.$btnType]}
 `;
 
 Button.defaultProps = {

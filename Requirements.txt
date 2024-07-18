@@ -10,3 +10,6 @@ check:
     9- reset the most rated this month on the 1st of the next month
     10- the app should support the Arabic and English
     11- show the Nearest Roasters on a map
+    12- users can fave beans and roasters
+    13- users can like/dislike a review
+    14- user's profile should display all user's favourites and likes/dislikes
