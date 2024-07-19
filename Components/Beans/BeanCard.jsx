@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { useState } from "react";
 import CardHeader from "../Card/CardHeader";
 import CardRanking from "../Card/CardRanking";
 import CardImage from "../Card/CardImage";
@@ -12,10 +11,13 @@ import CardFooter from "../Card/CardFooter";
 import Rating from "../Rating";
 import CardButton from "../Card/CardButton";
 import { updateFave } from "@/API/actionsMutation";
+import { useState } from "react";
 
-export default function BeanCard({bean}) {
+export default function BeanCard({bean, fave}) {
+  
+  const [liked, setLiked] = useState(fave);
+
   // temporary logic:
-  const [liked, setLiked] = useState(false); // in later stage this should be a removed and replased with an API to add the bean to the user faves list.
   const locale = "ar"; // in later stage this wil be comming from the [locale] params.
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
 //   console.log("name"+withLocale);
@@ -24,9 +26,11 @@ export default function BeanCard({bean}) {
   const drinkType = bean["drinkType"+withLocale];
 
   async function handleHearts() {
-    console.log("♥");
+    // show an immediate react to the user's click:
+    setLiked(!liked);
+
+    // handling the real action:
     const result = await updateFave("Bean", id);
-    // how to revalidate ONLY this card?
   }
 
   return (
@@ -34,7 +38,6 @@ export default function BeanCard({bean}) {
     <li className="bg-emerald-200 flex flex-col rounded-md">
       <CardHeader>
         <CardRanking ranking={ranking}/>
-        {/* <button onClick={() => setLiked(!liked)}> */}
         <button onClick={handleHearts}>
           <HeartIcon className={`icon stroke-red-500 hover:fill-red-500 ${liked && "fill-red-500"}`}/>
         </button>

@@ -31,22 +31,3 @@ export async function getUser(id) { // no need to login, anyone can view others'
         
     }
 }
-
-export async function getFaves(model) {
-    // const { userId } = await verifySession();
-    // if(!userId) throw new Error("you must login to add it to your faviroutes");
-
-    const userId = "668ccaf9391b8dad3456d0ee";
-    const field = "favourite".concat(model+"s"); // = favouriteBeans || favouriteRoasters
-
-    try {
-        await dbConnection();
-        const faves = (await User.findById(userId).select(field))[field];
-        console.log(typeof faves, faves);
-
-        return faves;
-        
-    } catch (error) {
-        console.log("getFaves",error);
-    }
-}

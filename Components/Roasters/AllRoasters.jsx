@@ -1,10 +1,11 @@
 import { getRoasters } from "@/API/apiRoasters";
-import Cards from "../Card/Cards";
+import Cards from "../Card/CardsList";
 import RoastersCards from "./RoastersCards";
+import { getAll } from "@/API/apiGlobal";
+import Roaster from "@/Models/roasterModel";
 
 export default async function AllRoasters({ filter, sortBy }) {
-  const roasters = await getRoasters(filter, sortBy);
-  console.log(roasters.length);
+  const roasters = await getAll(Roaster, filter, sortBy);
 
   return (
     <div>

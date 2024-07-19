@@ -61,8 +61,8 @@ const Button = styled.button`
 `;
 
 Button.defaultProps = {
-    btnType: "primary",
-    size: "medium",
+    $btnType: "primary",
+    $size: "medium",
 };
 
 export default Button;

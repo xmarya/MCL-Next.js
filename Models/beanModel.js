@@ -193,6 +193,6 @@ BeanSchema.post("findOneAndDelete", async function(deletedDoc) {
 
 // mongoose.set("sanitizeFilter", true);
 mongoose.set("sanitizeFilter", false); // I changed becuase of the getTopBeans() was throwing this Error: Cast to Number failed for value "{ '$lte': 10 }" (type Object) 
-const Bean = mongoose.models.Bean || mongoose.model("Bean", BeanSchema);
+const Bean = mongoose.models?.Bean || mongoose.model("Bean", BeanSchema);
 
 export default Bean;
