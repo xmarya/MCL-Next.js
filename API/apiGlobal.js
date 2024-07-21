@@ -15,7 +15,12 @@ export async function createDoc(Model, formData) {
   }
 }
 
-export async function getAll(Model, filter = {}, sortBy = "ranking") {
+export async function getAll(Model, filter = {}, sortBy = "-ratingsAverage") {
+
+  if(sortBy === "-ratingsQuantity" || sortBy === "ratingsQuantity") {
+    sortBy = sortBy.concat(" -ratingsAverage nameAr")
+  }
+
 
   try {
     await dbConnection();

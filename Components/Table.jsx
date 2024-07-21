@@ -89,7 +89,7 @@ function Header({children}) {
 
 
 function Body({data, render}) {
-    if(!data?.length) return <p>No data were found</p>
+    if(!data?.length) return <div className="text-center my-6">لا يوجد بيانات لعرضها</div>
     
     return(
         <StyledBody>

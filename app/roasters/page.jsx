@@ -1,5 +1,6 @@
 import AllRoasters from "@/Components/Roasters/AllRoasters";
-import RoastersOperations from "@/Components/Roasters/RoastersOperations";
+import RoastersFilter from "@/Components/Roasters/RoastersFilter";
+import TableOperations from "@/Components/TableOperations";
 import { Suspense } from "react";
 
 export default async function Roasters({ searchParams }) {
@@ -9,9 +10,10 @@ export default async function Roasters({ searchParams }) {
     sortBy = searchParams.sortBy;
     delete searchParams.sortBy;
   }
+  
     return (
       <div className="h-full grid grid-cols-[0.2fr_1fr] gap-2">
-        <RoastersOperations/>
+        <TableOperations Filter={RoastersFilter}/>
         <Suspense fallback="Loading...">
           <AllRoasters filter={searchParams} sort={sortBy}/>
         </Suspense>
