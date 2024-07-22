@@ -12,6 +12,8 @@ import Rating from "../Rating";
 import CardButton from "../Card/CardButton";
 import { updateFave } from "@/API/actionsMutation";
 import { useState } from "react";
+import { Tag, TagsList } from "../Tag";
+import Link from "next/link";
 
 export default function BeanCard({bean, fave}) {
   
@@ -22,7 +24,7 @@ export default function BeanCard({bean, fave}) {
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
 //   console.log("name"+withLocale);
 // console.log(bean["name"+withLocale]);
-  const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare } = bean;
+  const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare, roaster } = bean;
   const drinkType = bean["drinkType"+withLocale];
 
   async function handleHearts() {
@@ -43,6 +45,16 @@ export default function BeanCard({bean, fave}) {
         </button>
       </CardHeader>
       <CardImage>
+        <TagsList>
+          {
+            isRare && <Link href="/beans?isRare=true">
+              <Tag $type="special">محصول فاخر</Tag>
+            </Link>
+          }
+          <Link href={`/roasters/${roaster._id}`}>
+            <Tag>{roaster["name"+withLocale]}</Tag>
+          </Link>
+        </TagsList>
         <img className="w-full h-full object-cover" src="/roasters/soil.jpg" alt={bean["name"+withLocale]}/>
       </CardImage>
       <CardDetails>

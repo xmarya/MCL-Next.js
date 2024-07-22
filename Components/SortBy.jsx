@@ -41,9 +41,7 @@ export default function SortBy() {
     const router = useRouter();
     const pathname = usePathname();
     
-    // const activeOption = searchParams.get("sortBy")?.split("-")[1];
-    const activeOption = searchParams.get("sortBy");
-    console.log(activeOption);
+    const activeOption = searchParams.get("sortBy") || "-ratingsAverage";
     const [isSelected, setIsSelected] = useState(activeOption);
     console.log(isSelected);
 
@@ -69,47 +67,3 @@ export default function SortBy() {
         </Fieldset>
   );
 }
-
-
-/*
-
-<div className="bg-yellow-700 flex flex-col">
-      <label htmlFor="sort-menu" className="text-xl">
-        عرض حسب :
-      </label>
-      <div className="bg-yellow-100 flex flex-col">
-        <OptionContainer className="bg-pink-200">
-          <label htmlFor="sort-name" className="text-xl">
-            الاسم
-          </label>
-          <input type="radio" id="name" value="الاسم" />
-        </OptionContainer>
-        <OptionContainer>
-          <label htmlFor="sort-highestRating" className="text-xl">
-            الأكثر تقييمًا
-          </label>
-          <input type="radio" id="highest-rating" value="الأكثر تقييمًا" />
-        </OptionContainer>
-        <div>
-          <label htmlFor="sort-lowestRating" className="text-xl">
-            الأقل تقييمًا
-          </label>
-          <input type="radio" id="lowest-rating" value="الأقل تقييمًا" />
-        </div>
-        <div>
-          <label htmlFor="sort-highestVoting" className="text-xl">
-            الأكثر تصويتًا
-          </label>
-          <input type="radio" id="highest-voting" value="الأكثر تصويتًا" />
-        </div>
-        <div>
-          <label htmlFor="sort-lowestVoting" className="text-xl">
-            الأقل تصويتًا
-          </label>
-          <input type="radio" id="lowest-voting" value="الأقل تصويتًا" />
-        </div>
-      </div>
-    </div>
-
-
-*/
