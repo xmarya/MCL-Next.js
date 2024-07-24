@@ -11,6 +11,7 @@
 
 import BeansNotes from "./Filters/BeansNotes";
 import BeansOrigins from "./Filters/BeansOrigins";
+import BeansRating from "./Filters/BeansRating";
 import RoastersNames from "./Filters/RoastersNames";
 import SelectDrinkType from "./SelectsMenu/SelectDrinkType";
 import SelectProcessType from "./SelectsMenu/SelectProcessType";
@@ -25,6 +26,7 @@ export default async function BeansFilter() {
 
   return (
     <div className="flex flex-col p-6 mb-6">
+        <BeansRating/>
         <RoastersNames/>
         <BeansOrigins/>
         <BeansNotes/>

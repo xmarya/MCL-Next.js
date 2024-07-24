@@ -5,11 +5,7 @@ import { useRouter } from "next/navigation";
 
 
 
-export default function SelectRoaster({data}) {
-
-    const namesAr = data.map(({nameAr}) => ({value: `roasterAr=${nameAr}`, label: nameAr}));
-    const namesEn = data.map(({nameEn}) => ({value: `roasterAr=${nameEn}`, label: nameEn}));
-
+export default function SelectRoaster({options}) {
 
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -19,7 +15,7 @@ export default function SelectRoaster({data}) {
     return (
         <select>
             {
-                namesAr.map(opt =>
+                options.map(opt =>
                     <option key={opt.value}>{opt.label}</option>
                 )
             }

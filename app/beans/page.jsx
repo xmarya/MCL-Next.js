@@ -1,5 +1,5 @@
 import AllBeans from "@/Components/Beans/AllBeans";
-import BeansFilter from "@/Components/Beans/BeansFilter";
+import BeansFilters from "@/Components/Beans/BeansFilters";
 import TableOperations from "@/Components/TableOperations";
 import { Suspense } from "react";
 
@@ -20,7 +20,7 @@ export default function Beans({ searchParams }) {
   // maybe it's best to make create a layout.jsx and make it a grid container
   return (
     <section className="h-full grid grid-cols-[0.2fr_1fr] gap-2">
-      <TableOperations Filter={BeansFilter}/>
+      <TableOperations Filter={BeansFilters}/>
       <Suspense fallback="Loading...">
         <AllBeans filter={searchParams} sort={sortBy}/>
       </Suspense>

@@ -41,12 +41,22 @@ export async function getOneRoaster(roasterId) {
   }
 }
 
-export async function getRoastersNames() {
+export async function getRoastersNames(lang) {
+  const withLocale = lang.at(0).toUpperCase().concat(lang.at(1))
+  const field = "name".concat(withLocale); // = nameAr || nameEn
+  console.log("field",field);
+
   try {
 
     await dbConnection();
-    const names = await Roaster.find().select("nameAr nameEn -_id");
-    return JSON.parse(JSON.stringify(names));
+    // const names = await Roaster.find().select("nameAr nameEn -_id");
+    const names = await Roaster.find().select(field);
+
+    const roastersNames = names.map((name) => ({value: `roaster${withLocale}=${name[field]}`, label: name[field]}));
+
+    console.log(roastersNames);
+    
+    return JSON.parse(JSON.stringify(roastersNames));
 
   } catch (error) {
     
