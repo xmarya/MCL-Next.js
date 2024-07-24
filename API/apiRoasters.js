@@ -41,6 +41,18 @@ export async function getOneRoaster(roasterId) {
   }
 }
 
+export async function getRoastersNames() {
+  try {
+    await dbConnection();
+    const names = await Roaster.find().select("nameAr nameEn -_id");
+    return names;
+
+    // return JSON.parse(JSON.stringify(names));
+  } catch (error) {
+    console.log("getRoastersNames", error);
+  }
+}
+
 // export async function getTopRoasters() {
 //     await dbConnection();
 //     const roasters = await Roaster.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity -__v");

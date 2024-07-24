@@ -227,7 +227,7 @@ RoasterSchema.post("findOneAndDelete", async function(deletedDoc) {
 
 
 // mongoose.set("sanitizeFilter", true);
-mongoose.set("sanitizeFilter", false); // I changed becuase of the getTopRoaster() was throwing this Error: Cast to Number failed for value "{ '$lte': 10 }" (type Object) 
-const Roaster = mongoose.models.Roaster || mongoose.model("Roaster", RoasterSchema);
+// mongoose.set("sanitizeFilter", false); // I changed becuase of the getTopRoaster() was throwing this Error: Cast to Number failed for value "{ '$lte': 10 }" (type Object) 
+const Roaster = mongoose.models?.Roaster || mongoose.model("Roaster", RoasterSchema);
 
 export default Roaster;

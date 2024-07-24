@@ -31,7 +31,7 @@ rankingSchema.pre(/^find/, function(next) {
     next();
 });
 
-mongoose.set("sanitizeFilter", true);
+// mongoose.set("sanitizeFilter", true);
 const Ranking = mongoose.models?.Ranking || mongoose.model("Ranking", rankingSchema);
 
 export default Ranking;

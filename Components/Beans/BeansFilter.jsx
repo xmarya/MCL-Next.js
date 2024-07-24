@@ -1,20 +1,34 @@
-"use client"
+"use client";
 
-export default function BeansFilter({filterOptions}) {
-  //http://localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&isRare=true
+import { useRoasterNames } from "@/hooks/contexts/RoastersNames";
+import { useRouter, useSearchParams } from "next/navigation";
+
+import styled from "styled-components";
+
+
+const StyledFilter = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin-bottom: 1.6rem;
+`;
+
+export default function BeansFilter({ filterOptions }) {
+  //http://localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&notesAr=لوز
+  // for the same field with multiple values :
+  // http://localhost:3000/beans?notesAr=شوكولاتة&لوز
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const { namesAr, namesEn } = useRoasterNames();
+  console.log(namesAr);
+  console.log(options);
+
+  function handleSelect(selectedOpt) {}
 
   return (
-    <div>
-        BF
-    </div>
-  );
-}
-
-function FilterButton({ children, capacity, active, onClick }) {
-  return (
-    <button></button>
-    // <button onClick={() => onClick(capacity)} className={`${capacity === active ? "bg-primary-700 text-primary-50" : ""} py-2 px-5 hover:bg-primary-700`}>
-    //     {children}
-    // </button>
+    <StyledFilter>
+      <p>ايحاءات المحصول:</p>
+    </StyledFilter>
   );
 }

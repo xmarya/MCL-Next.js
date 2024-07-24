@@ -226,7 +226,7 @@ reviewSchema.post("save", function() { // no need to use async-await in post() h
                                 // the current doc's model type that is being reviewd and rated with its id.
 });
 
-mongoose.set("sanitizeFilter", true);
+// mongoose.set("sanitizeFilter", true);
 const Review = mongoose.models?.Review || mongoose.model("Review", reviewSchema);
 
 export default Review;

@@ -47,7 +47,7 @@ export default function SortBy() {
 
     return (
         <Fieldset className="bg-yellow-100">
-            <label className="text-3xl">عرض حسب :</label>
+            <p className="text-3xl">عرض حسب :</p>
             <RadioButtons options={sortOptions} isSelected={isSelected} onChange={handleRadio}/>
         </Fieldset>
   );
