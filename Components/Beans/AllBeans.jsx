@@ -1,12 +1,9 @@
-import { getBeans } from "@/API/apiBeans";
 import { getAll, getFaves } from "@/API/apiGlobal";
 import BeanCard from "./BeanCard";
 import CardsList from "../Card/CardsList";
 import Bean from "@/Models/beanModel";
-import { getRoastersNames } from "@/API/apiRoasters";
 
 export default async function AllBeans({ filter, sort }) {
-  // const beans = await getBeans(filter, sort);
   const beans = await getAll(Bean, filter, sort);
   const faves = await getFaves("Bean");
 

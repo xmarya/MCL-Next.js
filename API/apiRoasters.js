@@ -43,12 +43,13 @@ export async function getOneRoaster(roasterId) {
 
 export async function getRoastersNames() {
   try {
+
     await dbConnection();
     const names = await Roaster.find().select("nameAr nameEn -_id");
-    return names;
+    return JSON.parse(JSON.stringify(names));
 
-    // return JSON.parse(JSON.stringify(names));
   } catch (error) {
+    
     console.log("getRoastersNames", error);
   }
 }
