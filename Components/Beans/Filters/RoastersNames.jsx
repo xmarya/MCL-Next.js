@@ -8,7 +8,7 @@ export default async function RoastersNames({params}) {
 
     return (
         <div>
-            {/* <SelectRoaster options={names}/> */}
+            <SelectRoaster options={names}/>
         </div>
     )
 }

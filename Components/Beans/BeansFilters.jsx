@@ -18,9 +18,9 @@ import SelectProcessType from "./SelectsMenu/SelectProcessType";
 
 
 export default async function BeansFilter() {
-  //http://localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&notesAr=لوز
+  //localhost:3000/beans?typeOfProcessAr=مجففة&notesAr=شوكولاتة&لوز
   // for the same field with multiple values :
-  // http://localhost:3000/beans?notesAr=شوكولاتة&لوز
+  // localhost:3000/beans?notesAr=شوكولاتة&لوز
 
 
 

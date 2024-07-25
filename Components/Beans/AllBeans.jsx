@@ -5,6 +5,7 @@ import Bean from "@/Models/beanModel";
 
 export default async function AllBeans({ filter, sort }) {
   const beans = await getAll(Bean, filter, sort);
+  console.log(beans.length);
   const faves = await getFaves("Bean");
 
   // console.log(Object.entries(filter).length > 0); // ✅
