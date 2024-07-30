@@ -69,3 +69,28 @@ export async function updateBean(formData) {
 //   await Bean.findByIdAndDelete(beanId);
 //   return "removed";
 // }
+
+
+export async function getBeansNotes(locale) {
+
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
+  const field = "notes".concat(withLocale); // = notesAr || notesEn
+
+  try {
+    await dbConnection();
+    const notes = await Bean.find().select(field);
+    let beansNotes = notes.map(note => note[field]);
+    // converting all of the arrays into ONE-UNIQUE-VALUES array (.flat() to flatten an array ...new Set() to get its unique values into a new array)
+    beansNotes = [...new Set(beansNotes.flat(1).sort())];
+
+    // building the format for Select component:
+    // {value: for query purposes, label: for the displayed text in the select menu}
+    beansNotes = beansNotes.map(note => ({value: note, label: note}));
+
+    return beansNotes;
+
+  } catch (error) {
+    console.log("getBeansNotes", error);
+  }
+
+}

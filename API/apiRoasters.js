@@ -41,18 +41,17 @@ export async function getOneRoaster(roasterId) {
   }
 }
 
-export async function getRoastersNames(lang) {
-  const withLocale = lang.at(0).toUpperCase().concat(lang.at(1))
+export async function getRoastersNames(locale) {
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1))
   const field = "name".concat(withLocale); // = nameAr || nameEn
 
   try {
 
     await dbConnection();
-    // const names = await Roaster.find().select("nameAr nameEn -_id");
     const names = await Roaster.find().select(field);
+    // {value: for query purposes, label: for the displayed text in the select menu}
+    const roastersNames = names.map((name) => ({value: name._id, label: name[field]})); // label: name[field] to only get the name[withLocale] field and get rif of the _id, print the roastersName with label: name to know what I mean.
 
-    const roastersNames = names.map((name) => ({value: `roaster${withLocale}=${name[field]}`, label: name[field]}));
-    
     return JSON.parse(JSON.stringify(roastersNames));
 
   } catch (error) {
