@@ -46,7 +46,7 @@ export default function FilterSelect({ options, filterField }) {
     }
 
     return (
-        <Select id={id} onChange={handleSelect} defaultValue={defaultValues} className="w-full bg-orange-300" isMulti isRtl placeholder="اختر..." options={options} closeMenuOnSelect={false} components={animatedComponents}/>
+        <Select id={id} onChange={handleSelect} defaultValue={defaultValues} className="w-full bg-orange-300 text-lg" isMulti isRtl placeholder="اختر..." options={options} closeMenuOnSelect={false} components={animatedComponents}/>
     )
 }
 

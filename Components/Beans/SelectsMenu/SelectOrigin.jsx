@@ -6,7 +6,7 @@ export default function SelectOrigin({options}) {
 
     return (
         <>
-            <p>البلد / المنطقة:</p>
+            <p className="text-lg font-semibold">البلد / المنطقة:</p>
             <FilterSelect options={options} filterField={filterField}/>
 
         </>

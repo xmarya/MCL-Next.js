@@ -6,7 +6,7 @@ export default function SelectProcessType({options}) {
 
     return (
         <>
-            <p>المعالجة:</p>
+            <p className="text-lg font-semibold">المعالجة:</p>
             <FilterSelect options={options} filterField={filterField}/>
         </>
     )

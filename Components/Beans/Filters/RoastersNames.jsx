@@ -7,9 +7,7 @@ export default async function RoastersNames({params}) {
         const names = await getRoastersNames("ar");
 
     return (
-        <div>
-            <SelectRoaster options={names}/>
-        </div>
+        <SelectRoaster options={names}/>
     )
 }
 

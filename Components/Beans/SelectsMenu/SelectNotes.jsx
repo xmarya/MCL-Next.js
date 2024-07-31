@@ -7,7 +7,7 @@ export default function SelectNotes({options}) {
 
     return (
         <>
-            <p>ايحاءات المحصول:</p>
+            <p className="text-lg font-semibold">ايحاءات المحصول:</p>
             <FilterSelect options={options} filterField={filterField}/>
 
         </>

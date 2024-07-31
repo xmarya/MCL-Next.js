@@ -7,7 +7,7 @@ export default function SelectRoaster({options}) {
 
     return (
         <>
-            <p>انتاج محمصة:</p>
+            <p className="text-lg font-semibold">انتاج محمصة:</p>
             <FilterSelect options={options} filterField={filterField}/>
         </>
     )

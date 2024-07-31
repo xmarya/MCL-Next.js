@@ -17,8 +17,20 @@ function destructSearchParams(searchParams) {
   
     const filter = {};
     for (const [key, value] of Object.entries(searchParams)) {
+      const valuesArray = value.split(',');
+      const queryOperator = key === "roaster" ? { $in: value.split(',')} : { $regex: valuesArray.join('|')};  // Join with '|' to match any
+      /*
       // Split the value by comma and trim any extra spaces
       filter[key] = { $in: value.split(',')};
+      
+      // Split the value by comma
+      // Use $or with $regex for each value in the array
+      // filter[key] = {
+        //   $or: valuesArray.map(value => ({ $regex: value}))
+        // };
+        */
+        
+      filter[key] = queryOperator;
     }
 
     return {filter, sortBy};
