@@ -1,13 +1,12 @@
-
 import FilterSelect from "@/Components/FilterSelect";
 
-export default function SelectRoaster({options}) {
-
-    const filterField = "roaster";
+export default function SelectVariety({options}) {
+    const withLocale = "Ar";
+    const filterField = "variety".concat(withLocale);
 
     return (
         <>
-            <p>انتاج محمصة:</p>
+            <p>السلالة:</p>
             <FilterSelect options={options} filterField={filterField}/>
         </>
     )

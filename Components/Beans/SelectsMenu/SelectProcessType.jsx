@@ -1,8 +1,14 @@
-export default function SelectProcessType({data}) {
+import FilterSelect from "@/Components/FilterSelect";
+
+export default function SelectProcessType({options}) {
+    const withLocale = "Ar";
+    const filterField = "typeOfProcess".concat(withLocale);
+
     return (
-        <div>
-            
-        </div>
+        <>
+            <p>المعالجة:</p>
+            <FilterSelect options={options} filterField={filterField}/>
+        </>
     )
 }
 

@@ -1,7 +1,7 @@
 import AllBeans from "@/Components/Beans/AllBeans";
 import BeansFilters from "@/Components/Beans/BeansFilters";
 import TableOperations from "@/Components/TableOperations";
-import { destructSearchParams } from "@/helpers/buildFilterFormat";
+import { destructSearchParams } from "@/helpers/filtering";
 import { Suspense } from "react";
 
 export const metadata = {

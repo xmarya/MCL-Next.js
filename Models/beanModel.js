@@ -19,27 +19,27 @@ const BeanSchema = new mongoose.Schema(
       unique: true,
     },
     originEn: {
-      type: String,
+      type: [String],
       required: [true, "origin is required"],
     },
     originAr: {
-      type: String,
+      type: [String],
       required: [true, "originAr is required"],
     },
     varietyEn: {
-      type: String,
+      type: [String],
       required: [true, "variety is required"],
     },
     varietyAr: {
-      type: String,
+      type: [String],
       required: [true, "varietyAr is required"],
     },
     typeOfProcessEn: {
-      type: String,
+      type: [String],
       required: [true, "typeOfProcess is required"],
     },
     typeOfProcessAr: {
-      type: String,
+      type: [String],
       required: [true, "typeOfProcessAr is required"],
     },
     notesEn: {

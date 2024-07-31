@@ -1,6 +1,6 @@
 "use client"
 
-import { buildFilterFormat } from "@/helpers/buildFilterFormat";
+import { buildFilterFormat } from "@/helpers/filtering";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useId } from "react";
 import Select from "react-select";

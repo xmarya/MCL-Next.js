@@ -1,5 +1,6 @@
 import Bean from "@/Models/beanModel";
 import { dbConnection } from "@/helpers/dbConnection";
+import { intoFilteringArray } from "@/helpers/filtering";
 
 // export async function createBean(formData) {
 //   await dbConnection();
@@ -44,11 +45,6 @@ export async function getOneBean(beanId) {
   }
 }
 
-// export async function getTopBeans() {
-//     await dbConnection();
-//     const beans = await Bean.find({ "ranking": { $lte: 10 } }).sort("ranking -ratingsQuantity").select("image nameEn nameAr ranking ratingsQuantity roaster");
-//     return beans;
-// }
 
 export async function updateBean(formData) {
   // here you're going to use that trick Jonas have teached you abou the hidden fom input that holds the id
@@ -79,18 +75,63 @@ export async function getBeansNotes(locale) {
   try {
     await dbConnection();
     const notes = await Bean.find().select(field);
-    let beansNotes = notes.map(note => note[field]);
-    // converting all of the arrays into ONE-UNIQUE-VALUES array (.flat() to flatten an array ...new Set() to get its unique values into a new array)
-    beansNotes = [...new Set(beansNotes.flat(1).sort())];
-
-    // building the format for Select component:
-    // {value: for query purposes, label: for the displayed text in the select menu}
-    beansNotes = beansNotes.map(note => ({value: note, label: note}));
+    const beansNotes = intoFilteringArray(notes, field);
 
     return beansNotes;
 
   } catch (error) {
     console.log("getBeansNotes", error);
+  }
+
+}
+
+export async function getBeansOrigins(locale) {
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
+  const field = "origin".concat(withLocale); // = originAr || originEn
+
+  try {
+    await dbConnection();
+    const origins = await Bean.find().select(field);
+    const beansOrigins = intoFilteringArray(origins, field);
+
+    return beansOrigins;
+    
+  } catch (error) {
+    console.log("getBeansOrigins", error);
+  }
+
+}
+
+export async function getBeansProcessTypes(locale) {
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
+  const field = "typeOfProcess".concat(withLocale); // = typeOfProcessAr || typeOfProcessEn
+
+  try {
+    await dbConnection();
+    const processTypes = await Bean.find().select(field);
+    const beansProcessTypes = intoFilteringArray(processTypes, field);
+
+    return beansProcessTypes;
+    
+  } catch (error) {
+    console.log("getBeansProcessTypes", error);
+  }
+
+}
+
+export async function getBeansVariety(locale) {
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
+  const field = "variety".concat(withLocale); // = varietyAr || varietyEn
+
+  try {
+    await dbConnection();
+    const variety = await Bean.find().select(field);
+    const beansVariety = intoFilteringArray(variety, field);
+
+    return beansVariety;
+    
+  } catch (error) {
+    console.log("getBeansVariety", error);
   }
 
 }

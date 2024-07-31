@@ -11,6 +11,7 @@
 
 import BeansNotes from "./Filters/BeansNotes";
 import BeansOrigins from "./Filters/BeansOrigins";
+import BeansProcessTypes from "./Filters/BeansProcessTypes";
 import BeansRating from "./Filters/BeansRating";
 import RoastersNames from "./Filters/RoastersNames";
 import SelectDrinkType from "./SelectsMenu/SelectDrinkType";
@@ -30,7 +31,7 @@ export default async function BeansFilter() {
         <RoastersNames/>
         <BeansOrigins/>
         <BeansNotes/>
-        <SelectProcessType/>
+        <BeansProcessTypes/>
         <SelectDrinkType/>
     </div>
   );

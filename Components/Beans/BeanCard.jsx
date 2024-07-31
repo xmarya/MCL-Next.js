@@ -25,6 +25,11 @@ export default function BeanCard({bean, fave}) {
 //   console.log("name"+withLocale);
 // console.log(bean["name"+withLocale]);
   const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare, roaster } = bean;
+
+  const name = bean["name"+withLocale];
+  const origin = bean["origin"+withLocale]?.join(" - ");
+  const variety = bean["variety"+withLocale]?.join(" - ");
+  const typeOfProcess = bean["typeOfProcess"+withLocale]?.join(" - ");
   const drinkType = bean["drinkType"+withLocale];
 
   async function handleHearts() {
@@ -55,21 +60,21 @@ export default function BeanCard({bean, fave}) {
             <Tag>{roaster["name"+withLocale]}</Tag>
           </Link>
         </TagsList>
-        <img className="w-full h-full object-cover" src="/roasters/soil.jpg" alt={bean["name"+withLocale]}/>
+        <img className="w-full h-full object-cover" src="/roasters/soil.jpg" alt={name}/>
       </CardImage>
       <CardDetails>
-        <CardName cardName={bean["name"+withLocale]}/>
+        <CardName cardName={name}/>
         <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المنشأ : </span>
-          {bean["origin"+withLocale]}
+          {origin}
         </div>
         <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>السلالة : </span>
-          {bean["variety"+withLocale]}
+          {variety}
         </div>
         <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المعالجة : </span>
-          {bean["typeOfProcess"+withLocale]}
+          {typeOfProcess}
         </div>
         <div className="text-[1.3rem] flex items-center bg-lime-300">
           <span>المشروب : </span>
