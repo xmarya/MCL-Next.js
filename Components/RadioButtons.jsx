@@ -1,6 +1,13 @@
 "use client"
 import styled from "styled-components";
 
+const Fieldset = styled.fieldset`
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    margin-bottom: 1.6rem;
+`;
+
 const OptionContainer = styled.div`
     display: flex;
     flex-direction: row-reverse;
@@ -45,19 +52,20 @@ const StyledRadio = styled.input`
 
 
 
-export default function RadioButtons({options, isSelected, onChange}) {
+export default function RadioButtons({groupName, sortTitle, options, selected, onChange}) {
     
     return (
-        
-            options.map(opt => 
+        <Fieldset className="bg-yellow-100">
+            <p className="text-lg font-semibold">{sortTitle}</p>
+            {options.map(opt => 
                 <OptionContainer key={opt.id} className="bg-pink-200">
-                    <label htmlFor={opt.htmlFor} className="text-2xl">
+                    <label htmlFor={opt.htmlFor} className="text-lg font-medium">
                         {opt.label}
                     </label>
-                    <StyledRadio name="sortBy" type="radio" id={opt.id} value={opt.value} checked={isSelected === opt.value} onChange={() => onChange(opt.value)}/>
+                    <StyledRadio name={groupName} type="radio" id={opt.id} value={opt.value} checked={selected === opt.value} onChange={() => onChange(opt.value)}/>
                 </OptionContainer>
-            )
-        
+            )}
+        </Fieldset>
     )
 }
 

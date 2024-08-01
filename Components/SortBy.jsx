@@ -2,7 +2,6 @@
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import styled from "styled-components";
 import RadioButtons from "./RadioButtons";
 
 /*
@@ -21,34 +20,23 @@ const sortOptions = [
     { htmlFor: "name", label: "الاسم", id: "name", value: "nameAr" },
 ];
 
-const Fieldset = styled.fieldset`
-    display: flex;
-    flex-direction: column;
-    padding: 0.5rem;
-    margin-bottom: 1.6rem;
-`;
-
-
 export default function SortBy() {
     const searchParams = useSearchParams();
     const router = useRouter();
     const pathname = usePathname();
     
     const activeOption = searchParams.get("sortBy") || "-ratingsAverage";
-    const [isSelected, setIsSelected] = useState(activeOption);
+    const [selected, setSelected] = useState(activeOption);
 
 
-    function handleRadio(inputValue) {
-        setIsSelected(inputValue);
+    function handleRadio(selectedValue) {
+        setSelected(selectedValue);
         const params = new URLSearchParams(searchParams);
-        params.set("sortBy", event.target.value);
+        params.set("sortBy", selectedValue);
         router.replace(`${pathname}?${params.toString()}`, {scroll: false});
     }
 
     return (
-        <Fieldset className="bg-yellow-100">
-            <p className="text-3xl">عرض حسب :</p>
-            <RadioButtons options={sortOptions} isSelected={isSelected} onChange={handleRadio}/>
-        </Fieldset>
+         <RadioButtons groupName="sortBy" sortTitle="عرض حسب :" options={sortOptions} selected={selected} onChange={handleRadio}/>
   );
 }

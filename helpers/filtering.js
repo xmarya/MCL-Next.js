@@ -7,6 +7,7 @@ function buildFilterFormat(filterOpts) {
     return formattedFilter;
 }
 
+// for the SCs that reads the searchParams
 function destructSearchParams(searchParams) {
     let sortBy;
 
@@ -18,7 +19,8 @@ function destructSearchParams(searchParams) {
     const filter = {};
     for (const [key, value] of Object.entries(searchParams)) {
       const valuesArray = value.split(',');
-      const queryOperator = key === "roaster" ? { $in: value.split(',')} : { $regex: valuesArray.join('|')};  // Join with '|' to match any
+      console.log("FVA",valuesArray);
+      const queryValue = key === "roaster" ? { $in: valuesArray} : { $regex: valuesArray.join('|')};  // Join with '|' to match any
       /*
       // Split the value by comma and trim any extra spaces
       filter[key] = { $in: value.split(',')};
@@ -30,12 +32,14 @@ function destructSearchParams(searchParams) {
         // };
         */
         
-      filter[key] = queryOperator;
+      filter[key] = queryValue;
     }
+    console.log("DSP", filter);
 
     return {filter, sortBy};
 }
 
+// only for db APIs uses
 function intoFilteringArray(dbObject, field, splitOption) {
 
   let data = dbObject.map(obj => obj[field]);
@@ -48,7 +52,7 @@ function intoFilteringArray(dbObject, field, splitOption) {
   data = data.map(option => ({value: option, label: option}));
 
   
-    return data;
+  return data;
 
 }
 

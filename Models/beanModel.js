@@ -53,10 +53,12 @@ const BeanSchema = new mongoose.Schema(
     drinkTypeEn: {
       type: [String],
       required: [true, "drinkType is required"],
+      enum: ["Drip", "Espresso"]
     },
     drinkTypeAr: {
       type: [String],
       required: [true, "drinkTypeAr is required"],
+      enum: ["مقطرة", "اسبريسو"]
     },
     image: String,
 
