@@ -17,10 +17,9 @@ function destructSearchParams(searchParams) {
     }
   
     const filter = {};
-    for (const [key, value] of Object.entries(searchParams)) {
+    for (let [key, value] of Object.entries(searchParams)) {
       const valuesArray = value.split(',');
-      console.log("FVA",valuesArray);
-      const queryValue = key === "roaster" ? { $in: valuesArray} : { $regex: valuesArray.join('|')};  // Join with '|' to match any
+      // const queryValue = key === "roaster" ? { $in: valuesArray} : { $regex: valuesArray.join('|')};  // Join with '|' to match any
       /*
       // Split the value by comma and trim any extra spaces
       filter[key] = { $in: value.split(',')};
@@ -31,10 +30,40 @@ function destructSearchParams(searchParams) {
         //   $or: valuesArray.map(value => ({ $regex: value}))
         // };
         */
+      let query;
+      
+      switch (key) {
+        case "roaster":
+          query = { $in: valuesArray};
+          break;
+
+        case "ratingsAverage":
+          // query = {$in: valuesArray.map(Number)} // this trick is from :https://stackoverflow.com/questions/15677869/how-to-convert-a-string-of-numbers-to-an-array-of-numbers
+          const ratings = valuesArray.map(value => {
+            const minRating = Number(value);
+            const maxRating = minRating + 1;
+            // the correct format => 
+              //$or: [ 
+                // { ratingsAverage: { $gte: 4, $lt: 5 } },
+                // { ratingsAverage: { $gte: 0, $lt: 3 } }
+                //]
+            // note that the $or operator doesn't have a field before it, the field is inside it
+            return {ratingsAverage: { $gte: minRating, $lt: maxRating }};
+          });
+
+          key = "$or";
+          query = ratings;
+          // console.log("$or:",ratings);
+          console.log("qur",query);
+          break;
+
+        default:
+          query = { $regex: valuesArray.join('|')};  // Join with '|' to match any
+          break;
+      }
         
-      filter[key] = queryValue;
+      filter[key] = query;
     }
-    console.log("DSP", filter);
 
     return {filter, sortBy};
 }

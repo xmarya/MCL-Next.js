@@ -17,9 +17,9 @@ export default async function BeansFilter({params = "ar"}) {
         <SelectRating/>
         <RoastersNames locale={params}/>
         <BeansOrigins locale={params}/>
-        <BeansNotes locale={params}/>
-        <BeansProcessTypes locale={params}/>
         <SelectDrinkType locale={params}/>
+        <BeansProcessTypes locale={params}/>
+        <BeansNotes locale={params}/>
     </div>
   );
 }
