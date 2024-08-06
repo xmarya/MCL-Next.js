@@ -1,6 +1,7 @@
-export default function CardDetails({children}) {
+export default function CardDetails({spanText, children}) {
     return (
-        <div className="bg-lime-500 w-full grid grid-cols-1 gap-[1.5rem] py-[2.5rem] px-[3rem]">
+        <div className="h-10 text-[1.3rem] flex items-center bg-lime-300">
+            <span>{spanText}&nbsp;</span>
             {children}
         </div>
     )

@@ -5,14 +5,15 @@ import { HeartIcon } from "@heroicons/react/24/outline";
 import CardHeader from "../Card/CardHeader";
 import CardRanking from "../Card/CardRanking";
 import CardImage from "../Card/CardImage";
-import CardDetails from "../Card/CardDetails";
+import CardBody from "../Card/CardBody";
 import CardName from "../Card/CardName";
+import CardDetails from "../Card/CardDetails";
 import CardFooter from "../Card/CardFooter";
 import Rating from "../Rating";
+import { Tag, TagsList } from "../Tag";
 import CardButton from "../Card/CardButton";
 import { updateFave } from "@/API/actionsMutation";
 import { useState } from "react";
-import { Tag, TagsList } from "../Tag";
 import Link from "next/link";
 
 export default function BeanCard({bean, fave}) {
@@ -22,15 +23,14 @@ export default function BeanCard({bean, fave}) {
   // temporary logic:
   const locale = "ar"; // in later stage this wil be comming from the [locale] params.
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
-//   console.log("name"+withLocale);
-// console.log(bean["name"+withLocale]);
   const {_id: id, image, ratingsAverage, ratingsQuantity, ranking, isRare, roaster } = bean;
 
   const name = bean["name"+withLocale];
   const origin = bean["origin"+withLocale]?.join(" - ");
   const variety = bean["variety"+withLocale]?.join(" - ");
   const typeOfProcess = bean["typeOfProcess"+withLocale]?.join(" - ");
-  const drinkType = bean["drinkType"+withLocale];
+  const notes = bean["notes"+withLocale]?.slice(0,3).join(" - ");
+  const drinkType = bean["drinkType"+withLocale].join(" - ");
 
   async function handleHearts() {
     // show an immediate react to the user's click:
@@ -62,25 +62,24 @@ export default function BeanCard({bean, fave}) {
         </TagsList>
         <img className="w-full h-full object-cover" src="/roasters/soil.jpg" alt={name}/>
       </CardImage>
-      <CardDetails>
+      <CardBody>
         <CardName cardName={name}/>
-        <div className="text-[1.3rem] flex items-center bg-lime-300">
-          <span>المنشأ : </span>
+        <CardDetails spanText="المنشأ:">
           {origin}
-        </div>
-        <div className="text-[1.3rem] flex items-center bg-lime-300">
-          <span>السلالة : </span>
+        </CardDetails>
+        <CardDetails spanText="السلالة:">
           {variety}
-        </div>
-        <div className="text-[1.3rem] flex items-center bg-lime-300">
-          <span>المعالجة : </span>
+        </CardDetails>
+        <CardDetails spanText="المعالجة:">
           {typeOfProcess}
-        </div>
-        <div className="text-[1.3rem] flex items-center bg-lime-300">
-          <span>المشروب : </span>
-          {drinkType.length > 1 ? drinkType[0]+"، "+ drinkType[1] : drinkType}
-        </div>
-      </CardDetails>
+        </CardDetails>
+        <CardDetails spanText="الايحاءات:">
+          {notes}
+        </CardDetails>
+        <CardDetails spanText="المشروب:">
+          {drinkType}
+        </CardDetails>
+      </CardBody>
       <CardFooter>
         <Rating ratingAvg={ratingsAverage} ratingQuant={ratingsQuantity}/>
         <CardButton resourse="beans" id={id} text="عرض المحصول"/>

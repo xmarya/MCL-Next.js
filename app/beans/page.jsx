@@ -11,13 +11,13 @@ export const metadata = {
 
 export default function Beans({ searchParams }) {
 
-  const {filter, sortBy} = destructSearchParams(searchParams);
+  const {filter, sortBy, page} = destructSearchParams(searchParams);
 
   return (
-    <section className="h-full grid grid-cols-[0.2fr_1fr] gap-2">
+    <section className="h-full grid grid-cols-[0.2fr_1fr]">
       <TableOperations Filter={BeansFilters}/>
       <Suspense fallback="Loading...">
-        <AllBeans filter={filter} sort={sortBy}/>
+        <AllBeans filter={filter} sort={sortBy} page={page}/>
       </Suspense>
     </section>
   );

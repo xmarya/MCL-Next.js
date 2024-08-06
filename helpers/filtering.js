@@ -10,12 +10,18 @@ function buildFilterFormat(filterOpts) {
 // for the SCs that reads the searchParams
 function destructSearchParams(searchParams) {
     let sortBy;
+    let page;
 
     if (searchParams.hasOwnProperty("sortBy")) {
       sortBy = searchParams.sortBy;
       delete searchParams.sortBy;
     }
-  
+
+    if (searchParams.hasOwnProperty("page")) {
+      page = +searchParams.page;
+      delete searchParams.page;
+    }
+
     const filter = {};
     for (let [key, value] of Object.entries(searchParams)) {
       const valuesArray = value.split(',');
@@ -65,13 +71,13 @@ function destructSearchParams(searchParams) {
       filter[key] = query;
     }
 
-    return {filter, sortBy};
+    return {filter, sortBy, page};
 }
 
 // only for db APIs uses
-function intoFilteringArray(dbObject, field, splitOption) {
+function intoFilteringArray(dataObject, field, splitOption) {
 
-  let data = dbObject.map(obj => obj[field]);
+  let data = dataObject.map(obj => obj[field]);
 
   // converting all of the arrays into ONE-UNIQUE-VALUES array (.flat() to flatten an array ...new Set() to get its unique values into a new array)
   data = [...new Set(data.flat(1).sort())];

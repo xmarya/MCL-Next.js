@@ -6,7 +6,7 @@ export default function SelectVariety({options}) {
 
     return (
         <>
-            <p>السلالة:</p>
+            <p className="text-lg font-semibold">السلالة:</p>
             <FilterSelect options={options} filterField={filterField}/>
         </>
     )

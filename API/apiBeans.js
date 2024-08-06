@@ -66,7 +66,7 @@ export async function updateBean(formData) {
 //   return "removed";
 // }
 
-
+/*
 export async function getBeansNotes(locale) {
 
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
@@ -134,4 +134,22 @@ export async function getBeansVariety(locale) {
     console.log("getBeansVariety", error);
   }
 
+}
+*/
+
+
+export async function getBeansFieldData(field, locale) {
+  const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
+  field = field.concat(withLocale); // = varietyAr || varietyEn for example.
+
+  try {
+    await dbConnection();
+    const dataObject = await Bean.find().select(field);
+    const beansFilteringData = intoFilteringArray(dataObject, field);
+
+    return beansFilteringData;
+    
+  } catch (error) {
+    console.log("getBeansFieldData", error);
+  }
 }

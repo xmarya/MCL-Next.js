@@ -1,11 +1,12 @@
 "use client"
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import styled from "styled-components";
 
 const Fieldset = styled.fieldset`
     display: flex;
     flex-direction: column;
     padding: 0.75rem;
-    margin-bottom: 1.6rem;
 `;
 
 const OptionContainer = styled.div`
@@ -52,17 +53,30 @@ const StyledRadio = styled.input`
 
 
 
-export default function RadioButtons({groupName, sortTitle, options, selected, onChange}) {
+export default function RadioButtons({groupName, pText, options, paramsName, selected}) {
+
+    const searchParams = useSearchParams();
+    const pathname = usePathname();
+    const router = useRouter();
+    const [_, setSelected] = useState();
+    
+    function handleRadio(selectedValue) {
+        setSelected(selectedValue);
+        const params = new URLSearchParams(searchParams);
+        params.set(paramsName, selectedValue);
+        params.set("page", 1); // reset the page whenever there was a change to the other params
+        router.push(`${pathname}?${params.toString()}`, {scroll: false});
+    }
     
     return (
-        <Fieldset className="bg-yellow-100">
-            <p className="text-lg font-semibold">{sortTitle}</p>
+        <Fieldset>
+            <p className="text-lg font-semibold">{pText}</p>
             {options.map(opt => 
                 <OptionContainer key={opt.id} className="bg-pink-200">
                     <label htmlFor={opt.htmlFor} className="text-lg font-medium">
                         {opt.label}
                     </label>
-                    <StyledRadio name={groupName} type="radio" id={opt.id} value={opt.value} checked={selected === opt.value} onChange={() => onChange(opt.value)}/>
+                    <StyledRadio name={groupName} type="radio" id={opt.id} value={opt.value} checked={selected === opt.value} onChange={() => handleRadio(opt.value)}/>
                 </OptionContainer>
             )}
         </Fieldset>

@@ -36,9 +36,9 @@ export default function FilterSelect({ options, filterField }) {
 
         const params = new URLSearchParams(searchParams);
         formattedFilter.length ? params.set(filterField, formattedFilter) : params.delete(filterField);
-
+        params.set("page", 1); // reset the page whenever there was a change to the other params
         // 2- navigate to the new URL progromatically:
-        router.replace(`${pathname}?${params.toString()}`, {scroll: false});   
+        router.push(`${pathname}?${params.toString()}`, {scroll: false});   
         /*
             router.replace updates the URL without adding a new entry to the browser's history stack.
             This is useful for updating the URL while keeping the user on the same page.
