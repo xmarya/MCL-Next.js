@@ -39,6 +39,7 @@ function destructSearchParams(searchParams) {
       let query;
       
       switch (key) {
+        case "isRare":
         case "roaster":
           query = { $in: valuesArray};
           break;

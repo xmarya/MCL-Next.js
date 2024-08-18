@@ -5,10 +5,8 @@ export default function SelectVariety({options}) {
     const filterField = "variety".concat(withLocale);
 
     return (
-        <>
-            <p className="text-lg font-semibold">السلالة:</p>
-            <FilterSelect options={options} filterField={filterField}/>
-        </>
+            <FilterSelect pText="السلالة:" options={options} filterField={filterField}/>
+
     )
 }
 

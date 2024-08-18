@@ -5,11 +5,9 @@ export default function SelectOrigin({options}) {
     const filterField = "origin".concat(withLocale);
 
     return (
-        <>
-            <p className="text-lg font-semibold">البلد / المنطقة:</p>
-            <FilterSelect options={options} filterField={filterField}/>
 
-        </>
+        <FilterSelect pText="البلد / المنطقة:" options={options} filterField={filterField}/>
+
     )
 }
 

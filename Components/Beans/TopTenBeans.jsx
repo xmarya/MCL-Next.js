@@ -3,6 +3,7 @@ import { getTopTen } from "@/API/apiRanking";
 import BeansTable from "./BeansTable";
 import { Noto } from "@/app/layout";
 import Link from "next/link";
+import Button from "../Button";
 
 export default async function TopTenBeans() {
     const beans = await getTopTen("Bean");
@@ -14,7 +15,9 @@ export default async function TopTenBeans() {
       </div>
       <div className="flex flex-col items-center gap-6">
         <BeansTable beans={beans}/>
-        <Link className={`${Noto.variable} text-13`} href="/beans">عرض جميع المحاصيل</Link>
+        <Button $btnType="secondary">
+          <Link className={`${Noto.variable} text-13`} href="/beans">عرض جميع المحاصيل</Link>
+        </Button>
       </div>
     </>
   );

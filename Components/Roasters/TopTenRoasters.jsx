@@ -2,6 +2,7 @@ import { getTopTen } from "@/API/apiRanking";
 import RoastersTable from "./RoastersTable";
 import Link from "next/link";
 import { Noto } from "@/app/layout";
+import Button from "../Button";
 
 export default async function TopTenRoasters() {
   const roasters = await getTopTen("Roaster");
@@ -15,9 +16,11 @@ export default async function TopTenRoasters() {
       </div>
       <div className="flex flex-col items-center gap-6">
         <RoastersTable roasters={roasters} />
-        <Link className={`${Noto.variable} text-13`} href="/roasters">
-          عرض جميع المحامص
-        </Link>
+        <Button $btnType="secondary">
+          <Link className={`${Noto.variable} text-13`} href="/roasters">
+            عرض جميع المحامص
+          </Link>
+        </Button>
       </div>
     </>
   );

@@ -14,7 +14,7 @@ export default function Beans({ searchParams }) {
   const {filter, sortBy, page} = destructSearchParams(searchParams);
 
   return (
-    <section className="h-full grid grid-cols-[0.2fr_1fr]">
+    <section className="h-full grid grid-cols-[0.2fr_1fr] gap-6 mt-12">
       <TableOperations Filter={BeansFilters}/>
       <Suspense fallback="Loading...">
         <AllBeans filter={filter} sort={sortBy} page={page}/>

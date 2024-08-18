@@ -1,12 +1,13 @@
 "use client";
 
-import { signup } from "@/API/actionsMutation";
+import { signup } from "@/API/actionsAuth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignupFormSchema } from "@/helpers/zodValidator";
 
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { Form, FormButton } from "../Form";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -25,11 +26,10 @@ export default function SignupForm() {
     toast.success("Successful Signup!");
     reset();
     router.replace("/");
-    //    router.push("/");
   }
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)}>
+    <Form onSubmit={handleSubmit(handleFormSubmit)}>
       <label htmlFor="username">Username:</label>
       <input
         required
@@ -69,9 +69,8 @@ export default function SignupForm() {
         <p>{formErrors.passwordConfirm.message}</p>
       )}
 
-      <div>
-        <button>{isSubmitting ? "submitting..." : "signup"}</button>
-      </div>
-    </form>
+      <FormButton>{isSubmitting ? "submitting..." : "signup"}</FormButton>
+      
+    </Form>
   );
 }

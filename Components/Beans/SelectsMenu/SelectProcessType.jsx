@@ -5,10 +5,7 @@ export default function SelectProcessType({options}) {
     const filterField = "typeOfProcess".concat(withLocale);
 
     return (
-        <>
-            <p className="text-lg font-semibold">المعالجة:</p>
-            <FilterSelect options={options} filterField={filterField}/>
-        </>
+            <FilterSelect pText="المعالجة:" options={options} filterField={filterField}/>
     )
 }
 

@@ -1,0 +1,1 @@
+export const ResultesPerPage= 12;

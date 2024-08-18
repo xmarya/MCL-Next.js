@@ -5,7 +5,7 @@ import styled, { css } from "styled-components";
 
 const types = {
     normal: css` background-color: var(--colour-primary);`,
-    special: css` background-color: pink;`
+    special: css` background-color: var(--colour-secondary);`
 }
 
 const TagsContainer = styled.ul`
@@ -32,7 +32,7 @@ const TagsList = styled.ul`
 const Tag = styled.li`
     color: var(--colour-grey-light-1);
     border-radius: 2rem;
-    padding: 0.3rem 0.9rem;
+    padding: 0.5rem 1.2rem;
     ${props => types[props.$type]}
 `;
 

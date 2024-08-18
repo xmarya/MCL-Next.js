@@ -35,10 +35,12 @@ const btnTypes = {
   secondary: css`
     color: var(--sub-paragraph-colour);
     background: var(--colour-grey-light-2);
-    border: 1px solid var(--colour-grey-light-1);
+    border: 1px solid var(--colour-grey-light-2);
 
     &:hover {
-      background-color: var(--colour-grey-50);
+      color: var(--colour-grey-light-1);
+      background-color: var(--light-brownish-grey);
+      border: 1px solid var(--light-brownish-grey);
     }
   `,
   danger: css`
@@ -55,9 +57,17 @@ const Button = styled.button`
   border: none;
   border-radius: 0.3rem;
   box-shadow: var(--shadow-sm);
+  border-end-end-radius: 2rem;
+  transition: all 0.3s ease;
+  
+  ${(props) => props.$useEndBorder && css`border-end-end-radius: 2rem;`};
+  ${(props) => sizes[props.$size]};
+  ${(props) => btnTypes[props.$btnType]};
 
-  ${(props) => sizes[props.$size]}
-  ${(props) => btnTypes[props.$btnType]}
+
+  &:hover {
+    border-end-end-radius: 0.3rem;
+  }
 `;
 
 Button.defaultProps = {

@@ -16,13 +16,11 @@ export async function createDoc(Model, formData) {
 }
 
 export async function getAll(Model, filter = {}, sortBy = "-ratingsAverage", page = 1) {
-  console.log("filter",filter, "page", page);
+  console.log("filter",filter);
 
   const resultesPerPage = +process.env.Resultes_Per_Page;
-  console.log("resultesPerPage", typeof resultesPerPage, resultesPerPage);
 
   const skipResults = (page - 1 ) * resultesPerPage;
-  console.log("skip", typeof skipResults, skipResults);
 
   if(sortBy === "-ratingsQuantity" || sortBy === "ratingsQuantity") {
     sortBy = sortBy.concat(" -ratingsAverage nameAr")
@@ -32,7 +30,7 @@ export async function getAll(Model, filter = {}, sortBy = "-ratingsAverage", pag
     await dbConnection();
 
     const totalDocs = await Model.find(filter).countDocuments();
-    console.log(totalDocs);
+
     let docs = await Model.find(filter).skip(skipResults).limit(resultesPerPage).sort(sortBy).select("-__v");
 
     if(!docs) return "No matched data";

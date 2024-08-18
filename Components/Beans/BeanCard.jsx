@@ -42,11 +42,11 @@ export default function BeanCard({bean, fave}) {
 
   return (
     // <StyledBeanCard>
-    <li className="bg-emerald-200 flex flex-col rounded-md">
+    <li className="flex flex-col border border-gray-200 rounded-md rounded-ss-[2rem] p-3">
       <CardHeader>
         <CardRanking ranking={ranking}/>
         <button onClick={handleHearts}>
-          <HeartIcon className={`icon stroke-red-500 hover:fill-red-500 ${liked && "fill-red-500"}`}/>
+          <HeartIcon className={`icon stroke-red-700 hover:fill-red-700 ${liked && "fill-red-700"}`}/>
         </button>
       </CardHeader>
       <CardImage>

@@ -30,10 +30,7 @@ const ratingOptions = Array.from({length: 6}, (_, index) => {
 export default async function SelectRating() {
     
     return (
-        <>
-            <p className="text-lg font-semibold">التقييمات:</p>
-            <FilterSelect options={ratingOptions} filterField="ratingsAverage"/>
-        </>
+            <FilterSelect pText="التقييمات:" options={ratingOptions} filterField="ratingsAverage"/>
     )
 }
 

@@ -8,7 +8,25 @@ import makeAnimated from 'react-select/animated';
 
 const animatedComponents = makeAnimated();
 
-export default function FilterSelect({ options, filterField }) {
+const customStyles = {
+    control: (base, state) => ({
+      ...base,
+      boxShadow: state.isFocused && "none", // removes the blue border.
+      borderColor: "none"
+    }),
+    placeholder: (base, state) => ({
+        ...base,
+        fontSize: "1.2rem",
+    }),
+    option: (base, state) => ({
+        ...base,
+        fontSize: "1.2rem",
+        fontWeight: "500"
+    }),
+  };
+  
+
+export default function FilterSelect({ pText, options, filterField }) {
 
     const id = useId();
     
@@ -46,7 +64,10 @@ export default function FilterSelect({ options, filterField }) {
     }
 
     return (
-        <Select id={id} onChange={handleSelect} defaultValue={defaultValues} className="w-full bg-orange-300 text-lg" isMulti isRtl placeholder="اختر..." options={options} closeMenuOnSelect={false} components={animatedComponents}/>
+        <div>
+        <p className="text-[1.6rem] font-semibold text-gray-500 mb-3">{pText}</p>
+        <Select id={id} onChange={handleSelect} defaultValue={defaultValues} isMulti isRtl placeholder="اختر..." options={options} closeMenuOnSelect={false} components={animatedComponents} styles={customStyles} />
+        </div>
     )
 }
 

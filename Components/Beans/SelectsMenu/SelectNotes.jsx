@@ -6,11 +6,9 @@ export default function SelectNotes({options}) {
     const filterField = "notes".concat(withLocale);
 
     return (
-        <>
-            <p className="text-lg font-semibold">ايحاءات المحصول:</p>
-            <FilterSelect options={options} filterField={filterField}/>
 
-        </>
+        <FilterSelect pText="ايحاءات المحصول:" options={options} filterField={filterField}/>
+
     )
 }
 

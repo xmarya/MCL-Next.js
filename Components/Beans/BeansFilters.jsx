@@ -10,7 +10,7 @@ import SelectRating from "./SelectsMenu/SelectRating";
 
 export default function BeansFilter({params = "ar"}) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-10 mt-6">
         <SelectRating/>
         <RoastersNames locale={params}/>
         <BeansOrigins locale={params}/>

@@ -8,6 +8,7 @@ const StyledTable = styled.div`
   font-size: 1.4rem;
   border: 1px solid var(--colour-secondary);
   border-radius: 7px;
+  margin-bottom: 1.6rem;
   overflow: hidden;
 `;
 
@@ -21,7 +22,6 @@ const TableColumns = styled.div`
 `;
 
 const StyledHeader = styled(TableColumns)`
-  background-color: var(--colour-grey-light-1);
   text-align: center;
   font-weight: 600;
   text-transform: uppercase;
