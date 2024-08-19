@@ -77,8 +77,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
   .section-heading-42 {
+    color: var(--colour-secondary-dark-1);
     font-size: 4.2rem;
     font-weight: 500;
+    margin-bottom: 4.4rem;
   }
 
   .sub-heading-32 {
@@ -107,7 +109,9 @@ const GlobalStyles = createGlobalStyle`
   text-align: center;
   font-family: inherit;
   color: var(--sub-paragraph-colour);
-  font-size: 1.8rem;
+  /* font-size: 1.8rem; */
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 .icon {

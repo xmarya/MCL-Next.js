@@ -7,7 +7,9 @@ import { SignupFormSchema } from "@/helpers/zodValidator";
 
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { Form, FormButton } from "../Form";
+import { Form, FormButton, FormError } from "../Form/Form";
+import Input from "../Form/Input";
+import Label from "../Form/Label";
 
 export default function SignupForm() {
   const router = useRouter();
@@ -30,47 +32,53 @@ export default function SignupForm() {
 
   return (
     <Form onSubmit={handleSubmit(handleFormSubmit)}>
-      <label htmlFor="username">Username:</label>
-      <input
+      <Label htmlFor="username">Username:</Label>
+      <Input
         required
         type="username"
         name="username"
         id="username"
         {...register("username")}
       />
-      {formErrors?.username?.message && <p>{formErrors.username.message}</p>}
-      <label htmlFor="email">Email:</label>
-      <input
+      <FormError $hasError={!!formErrors?.username?.message}>
+        {formErrors?.username?.message || ""}
+      </FormError>
+      <Label htmlFor="email">Email:</Label>
+      <Input
         required
         type="email"
         name="email"
         id="email"
         {...register("email")}
       />
-      {formErrors?.email?.message && <p>{formErrors.email.message}</p>}
-      <label htmlFor="password">Password:</label>
-      <input
+      {/* {formErrors?.email?.message && <p>{formErrors.email.message}</p>} */}
+      <FormError $hasError={!!formErrors?.email?.message}>
+        {formErrors?.email?.message || ""}
+      </FormError>
+      <Label htmlFor="password">Password:</Label>
+      <Input
         required
         type="password"
         name="password"
         id="password"
         {...register("password")}
       />
-      {formErrors?.password?.message && <p>{formErrors.password.message}</p>}
-      <label htmlFor="passwordConfirm">Confirm Your Password:</label>
-      <input
+      <FormError $hasError={!!formErrors?.password?.message}>
+        {formErrors?.password?.message || ""}
+      </FormError>
+      <Label htmlFor="passwordConfirm">Confirm Your Password:</Label>
+      <Input
         required
         type="password"
         name="passwordConfirm"
         id="passwordConfirm"
         {...register("passwordConfirm")}
       />
-      {formErrors?.passwordConfirm?.message && (
-        <p>{formErrors.passwordConfirm.message}</p>
-      )}
+      <FormError $hasError={!!formErrors?.passwordConfirm?.message}>
+        {formErrors?.passwordConfirm?.message || ""}
+      </FormError>
 
       <FormButton>{isSubmitting ? "submitting..." : "signup"}</FormButton>
-      
     </Form>
   );
 }

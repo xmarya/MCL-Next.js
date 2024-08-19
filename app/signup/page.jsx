@@ -1,13 +1,16 @@
 import { AuthLayout } from "@/Components/AuthLayout";
+import StyledLink from "@/Components/Link";
 import SignupForm from "@/Components/Signup/SignupForm";
-import Link from "next/link";
 
 export default function Signup() {
     return (
         <AuthLayout>
-            <h2 className="section-heading-42">sign up page</h2>
+            <h2 className="section-heading-42">تسجيل مستخدم جديد</h2>
             <SignupForm/>
-            <div className="bg-orange-400">Have an account? <Link href="/login">Login</Link></div>
+            <p className="grey-paragraph flex items-center justify-center gap-1">
+                لديك حساب بالفعل؟
+                <StyledLink href="/login">دخول</StyledLink>
+            </p>
         </AuthLayout>
     )
 }

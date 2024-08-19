@@ -57,17 +57,17 @@ const Button = styled.button`
   border: none;
   border-radius: 0.3rem;
   box-shadow: var(--shadow-sm);
-  border-end-end-radius: 2rem;
+  /* border-end-end-radius: 2rem; */
   transition: all 0.3s ease;
   
-  ${(props) => props.$useEndBorder && css`border-end-end-radius: 2rem;`};
-  ${(props) => sizes[props.$size]};
-  ${(props) => btnTypes[props.$btnType]};
+  /* ${(props) => props.$useEndBorder && css`border-end-end-radius: 2rem;`}; */
+  ${(props) => sizes[props.$size]}
+  ${(props) => btnTypes[props.$btnType]}
 
 
-  &:hover {
+  /* &:hover {
     border-end-end-radius: 0.3rem;
-  }
+  } */
 `;
 
 Button.defaultProps = {

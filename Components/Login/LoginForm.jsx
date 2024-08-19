@@ -7,6 +7,9 @@ import { LoginFormSchema } from "@/helpers/zodValidator";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import {login } from "@/API/actionsAuth";
+import { Form, FormButton, FormError } from "../Form/Form";
+import Label from "../Form/Label";
+import Input from "../Form/Input";
 
 
 const defaultUser = {
@@ -34,10 +37,10 @@ export default function LoginForm() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(handleFormSubmit)}>
-      <label htmlFor="email">Email:</label>
-      <input
+    // <>
+      <Form onSubmit={handleSubmit(handleFormSubmit)}>
+      <Label htmlFor="email">Email:</Label>
+      <Input
       defaultValue={defaultUser.email}
         required
         type="email"
@@ -45,9 +48,11 @@ export default function LoginForm() {
         id="email"
         {...register("email")}
       />
-      {formErrors?.email?.message && <p>{formErrors.email.message}</p>}
-      <label htmlFor="password">Password:</label>
-      <input
+      <FormError $hasError={!!formErrors?.email?.message}>
+      {formErrors?.email?.message || ""}
+        </FormError>
+      <Label htmlFor="password">Password:</Label>
+      <Input
       defaultValue={defaultUser.password}
         required
         type="password"
@@ -55,27 +60,13 @@ export default function LoginForm() {
         id="password"
         {...register("password")}
       />
-      {formErrors?.password?.message && <p>{formErrors.password.message}</p>}
+      <FormError $hasError={!!formErrors?.password?.message}>
+      {formErrors?.password?.message || ""}
+      </FormError>
 
       <div>
-        <button>{isSubmitting ? "submitting..." : "login"}</button>
+        <FormButton>{isSubmitting ? "submitting..." : "login"}</FormButton>
       </div>
-    </form>
-
-    {/* <form action={googleLogin}>
-      <span>&dash;OR&dash;</span>
-      <div>
-      <button>
-        <img
-          src="https://authjs.dev/img/providers/google.svg"
-          alt="Google logo"
-          height="24"
-          width="24"
-        />
-        <span>Login with Google account</span>
-      </button>
-      </div>
-    </form> */}
-    </>
+    </Form>
   );
 }

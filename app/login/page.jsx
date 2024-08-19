@@ -1,19 +1,20 @@
+import { AuthLayout } from "@/Components/AuthLayout";
+import StyledLink from "@/Components/Link";
 import LoginForm from "@/Components/Login/LoginForm";
-import Link from "next/link";
 
 export default function Login() {
     return (
-        <div>
-            <h2>login page</h2>
+        <AuthLayout>
+            <h2 className="section-heading-42">تسجيل الدخول</h2>
             <LoginForm/>
-            <p>
-                Doesn&apos;t have an account ? <Link href="/signup">Singup</Link>
+            <p className="grey-paragraph flex items-center justify-center gap-2">
+                Doesn&apos;t have an account ? <StyledLink href="/signup">Singup</StyledLink>
             </p>
-            <p>
-                Forget your Password ? <Link href="/forgetPassword">Reset password</Link>
+            <p className="grey-paragraph flex items-center justify-center gap-2">
+                Forget your Password ? <StyledLink href="/forgetPassword">Reset password</StyledLink>
             </p>
 
-        </div>
+        </AuthLayout>
     )
 }
 
