@@ -77,7 +77,8 @@ export default function SignupForm() {
       <FormError $hasError={!!formErrors?.passwordConfirm?.message}>
         {formErrors?.passwordConfirm?.message || ""}
       </FormError>
-
+      {/* TODO: style the disabled state */}
+      {/* TODO: make it disabled with this condition disabled={!isDirty || !isValid} */}
       <FormButton>{isSubmitting ? "submitting..." : "signup"}</FormButton>
     </Form>
   );
