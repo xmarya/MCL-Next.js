@@ -44,87 +44,36 @@ const GlobalStyles = createGlobalStyle`
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-    --check: 3px solid pink;
+    --check: 3px solid hotpink;
 
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: var(--check);
   }
 
   html {
     font-size: 62.5%;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: thin;
 
+  }
+
+  body {
+    max-width: 128rem;
     background-color: var(--colour-grey-light-1);
     color: var(--main-font-colour);
 
+    border: var(--check);
+    border-color: red;
   }
-  
-  *:focus:not(:hover),
-  a:focus:not(:hover) {
-    /* outline: 0.3rem solid;
-    outline-offset: 0.2rem; */
-    outline: none;
-    outline-offset: 0;
-  }
-
-  .grid-container {
-  max-width: 128rem;
-  background-color: palevioletred;
-  margin: 0 auto;
-  display: grid;
-  grid-template-rows: auto;
-  grid-auto-rows: auto;
-  /* grid-template-columns:
-    [full-start] minmax(0.7rem, 1fr) [centre-start] repeat(
-      8,
-      [col-start] minmax(min-content, 14rem) [col-end]
-    )
-    [centre-end] minmax(0.7rem, 1fr) [full-end]; */
-  }
-
-  .main-heading-52 {
-    font-size: 5.2rem;
-    font-weight: 700;
-    margin-bottom: 2rem;
-
-  }
-
-  .section-heading-42 {
-    color: var(--colour-secondary-dark-1);
-    font-size: 4.2rem;
-    font-weight: 500;
-    margin-bottom: 4.4rem;
-  }
-
-  .sub-heading-32 {
-    font-size: 3.2rem;
-    font-weight: 600;
-    color: var(--sub-paragraph-colour);
-    margin-bottom: 5.5rem;
-  }
-
-  .text-24 {
-    font-size: 2.4rem;
-  }
-
-  .text-18 {
-    font-size: 1.8rem;
-    font-weight: 600;
-  }
-
-  .text-13 {
-    font-size: 1.3rem;
-    font-weight: 800;
-    line-height: 1.6;
-  }
-
-.grey-paragraph {
-  text-align: center;
-  font-family: inherit;
-  color: var(--sub-paragraph-colour);
-  /* font-size: 1.8rem; */
-  font-size: 1.2rem;
-  font-weight: 500;
-}
 
 .icon {
   stroke-width: 0.9;
@@ -132,4 +81,5 @@ const GlobalStyles = createGlobalStyle`
   height: 4rem;
 }
   `;
+
 export default GlobalStyles;

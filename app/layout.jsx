@@ -2,6 +2,7 @@ import StyledComponentsRegistry from "./_styles/registy";
 import "@/app/_styles/globals.css"
 import Header from "@/Components/Headers/Header";
 import QuickAccess from "@/Components/Headers/QuickAccess";
+import { AppLayout } from "@/Components/Layouts/AppLayouts";
 import { IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google"
 import { Toaster } from "react-hot-toast";
 
@@ -32,14 +33,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <StyledComponentsRegistry>
-        <body className="h-svh flex flex-col">
+        <body>
+           {/* TODO:  the animated layout is going to be here inside the body*/}
           <Header>
             <QuickAccess/>
           </Header>
-          <main>
+          <AppLayout>
             <Toaster position="top-right"/>
             { children }
-          </main>
+          </AppLayout>
         </body>
       </StyledComponentsRegistry>
     </html>
