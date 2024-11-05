@@ -1,10 +1,23 @@
 import Link from "next/link";
+import styled from "styled-components";
+
+const StyledNavigation = styled.ul` 
+ 
+  width:45%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.8rem;
+
+  li {
+    font-size: 1.2rem;
+  }
+`;
 
 export default function Navigation() {
   
   return (
-    <nav >
-      <ul>
+    <StyledNavigation>
         <li>
           <Link href="/">
             الرئيسية
@@ -25,7 +38,6 @@ export default function Navigation() {
           محامص قريبة
           </Link>
         </li>     
-      </ul>
-    </nav>
+    </StyledNavigation>
   );
 }

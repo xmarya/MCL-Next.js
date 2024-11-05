@@ -6,7 +6,7 @@ export default async function QuickAccess() {
 
   return (
     <nav className="bg-orange-400">
-      <ul>
+      <ul className="">
         <li>
           {user?.image ?
             <Link
@@ -24,7 +24,7 @@ export default async function QuickAccess() {
               <Link
               href="/login"
               className="hover:text-accent-400 transition-colors">
-              تسجيل الدخول
+              دخول
             </Link>
             <span>|</span>
               <Link

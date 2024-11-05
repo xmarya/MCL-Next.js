@@ -4,24 +4,11 @@ import { createContext, useContext } from "react"
 import styled from "styled-components";
 
 const StyledTable = styled.div`
-  background-color: var(--colour-grey-light-1);
-  font-size: 1.4rem;
-  border: 1px solid var(--colour-secondary);
-  border-radius: 7px;
-  margin-bottom: 1.6rem;
-  overflow: hidden;
+  
 `;
 
 
-const TableColumns = styled.div`
-  display: grid;
-  grid-template-columns: ${(props) => props.columns};
-  column-gap: 2.8rem;
-  align-items: center;
-  /* transition: none; ?? */
-`;
-
-const StyledHeader = styled(TableColumns)`
+const TableHeader = styled.div`
   text-align: center;
   font-weight: 600;
   text-transform: uppercase;
@@ -31,7 +18,7 @@ const StyledHeader = styled(TableColumns)`
   padding: 1.6rem 2.4rem;
 `;
 
-const StyledRow = styled(TableColumns)`
+const TableRow = styled.div`
   text-align: center;
   padding: 2.4rem 4rem;
 
@@ -40,16 +27,11 @@ const StyledRow = styled(TableColumns)`
   }
 `;
 
-const StyledBody = styled.section`
-  margin: 0.4rem 0;
+const TableBody = styled.section`
+ 
 `;
 
 const Footer = styled.footer`
-  background-color: var(--colour-grey-light-1);
-  display: flex;
-  justify-content: center;
-  padding: 1.2rem;
-
   /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
   &:not(:has(*)) {
     display: none;
@@ -57,10 +39,7 @@ const Footer = styled.footer`
 `;
 
 const Empty = styled.p`
-  font-size: 1.6rem;
-  font-weight: 500;
-  text-align: center;
-  margin: 2.4rem;
+  
 `;
 
 
@@ -81,20 +60,20 @@ function Header({children}) {
     const {columns} = useContext(TableContext);
 
     return(
-        <StyledHeader role="row" as="header" columns={columns}>
+        <TableHeader role="row" as="header" columns={columns}>
             {children}
-        </StyledHeader>
+        </TableHeader>
     );
 }
 
 
 function Body({data, render}) {
-    if(!data?.length) return <div className="text-center my-6">لا يوجد بيانات لعرضها</div>
+    if(!data?.length) return <div>لا يوجد بيانات لعرضها</div>
     
     return(
-        <StyledBody>
+        <TableBody>
             {Object.values(data).map(render)}
-        </StyledBody>  
+        </TableBody>  
     );
 }
 
@@ -102,9 +81,9 @@ function Body({data, render}) {
 function Row({children}) {
     const {columns} = useContext(TableContext);
     return(
-        <StyledRow role="row" as="header" columns={columns}>
+        <TableRow role="row" as="header" columns={columns}>
             {children}
-        </StyledRow>
+        </TableRow>
     );
 }
 
