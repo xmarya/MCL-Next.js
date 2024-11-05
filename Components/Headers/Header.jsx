@@ -4,6 +4,8 @@ import styled from "styled-components";
 import SearchBar from "./SearchBar";
 import Navigation from "./Navigation";
 import Logo from "./Logo";
+import useWindowSize from "@/hooks/useWindowSize";
+import HamburgerNavigation from "./HamburgerNavigation";
 
 const StyledHeader = styled.header`
   container-type: inline-size;
@@ -20,14 +22,21 @@ const StyledHeader = styled.header`
   
 `
 
-
+const tbSize = 600;
 export default function Header({ children }) {
+  const {width} = useWindowSize();
+
   return (
+    width >= tbSize ?
     <StyledHeader>
         {children}
           <SearchBar />
           <Navigation />
           <Logo />
     </StyledHeader>
+
+    :
+
+    <HamburgerNavigation/>
   );
 }

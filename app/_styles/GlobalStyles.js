@@ -72,6 +72,8 @@ const GlobalStyles = createGlobalStyle`
 
     border: var(--check);
     border-color: red;
+
+    position: relative; // for the humbarger
   }
 
 .icon {
