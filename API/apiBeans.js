@@ -67,6 +67,7 @@ export async function updateBean(formData) {
 // }
 
 /*
+
 export async function getBeansNotes(locale) {
 
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));
@@ -136,7 +137,6 @@ export async function getBeansVariety(locale) {
 
 }
 */
-
 
 export async function getBeansFieldData(field, locale) {
   const withLocale = locale.at(0).toUpperCase().concat(locale.at(1));

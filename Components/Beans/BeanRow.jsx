@@ -28,27 +28,27 @@ import { Tag, TagsContainer } from "../Tag";
 */
 
 const Img = styled.img`
-  display: block;
-  width: 6.4rem;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.5) translateX(-7px);
+  width: clamp(6.4rem, 10rem, 12rem);
+  padding: 0.6rem;
+
 `;
 
 const Bean = styled.div`
   font-weight: 600;
   color: var(--colour-grey-600);
+
 `;
 
 const Rank = styled.div`
   font-family: "Sono";
   font-weight: 600;
+
 `;
 
 const Rating = styled.div`
   font-family: "Sono";
   font-weight: 600;
+
 `;
 
 
@@ -68,6 +68,7 @@ export default function BeanRow({ bean }) {
             <div>{roaster.nameAr}</div>
           </Link>
           <Rating>{ratingsAverage}</Rating>
+          {/* FIXME: the  TagsContainer should be wrapped be the Link*/}
           <TagsContainer>
             {notesAr.map((note, index) => index < 4 && <Tag key={index}><Link href={`/beans?notesAr=${note}`}>{note}</Link></Tag>)}
           </TagsContainer>

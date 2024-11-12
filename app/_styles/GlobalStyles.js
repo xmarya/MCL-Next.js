@@ -23,7 +23,8 @@ const GlobalStyles = createGlobalStyle`
     --sub-paragraph-colour: #5d5d5d;
     --error: #b91c1c;
 
-    --hero-heading: clamp(3rem, 8vw, 8rem);
+    
+  --hero-heading: clamp(3rem, 8vw, 8rem);
   --section-heading: clamp(2.6rem, 5vw, 3.2rem);
   --secondary-heading: clamp(2.4rem, 5vw, 2.8rem);
   --p-text: clamp(1.6rem, 2.5cqi, 2rem);
@@ -44,7 +45,7 @@ const GlobalStyles = createGlobalStyle`
     --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
 
-    --check: 1px solid hotpink;
+    --check: 2px solid hotpink;
 
   }
 
@@ -56,14 +57,20 @@ const GlobalStyles = createGlobalStyle`
     margin: 0;
   }
 
-  html {
-    font-size: 62.5%;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: thin;
+  
+*:disabled {
+  cursor: not-allowed;
+}
 
-  }
+html {
+  font-size: 62.5%;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  overflow-x: hidden;
+
+
+}
 
   body {
     max-width: 128rem;
@@ -73,8 +80,61 @@ const GlobalStyles = createGlobalStyle`
     border: var(--check);
     border-color: red;
 
-    position: relative; // for the humbarger
+    position: relative; // for the Hamburger nad the language button.
   }
+
+  p {
+    line-height: 1.4;
+  text-wrap: pretty;
+  }
+
+  
+button {
+  font-family: var(--main-font);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+select:disabled,
+input:disabled{
+  background-color: var(--colour-grey-200);
+  color: var(--colour-grey-500);
+  border-color: var(--colour-grey-500);
+}
+
+a {
+  font-family: var(--secondary-font);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
+/* 
+  Q- what does the HERO selector focus-visible do ?
+  A- Gets rid of the annoying outline for mouse users but preserves it for keyboard users,
+  and is ignored by browsers that don’t support :focus-visible.
+*/
+a:focus-visible:not(:hover) {
+  outline: 0.2rem solid var(--neon-purple);
+  outline-offset: 0.6rem;
+}
+
+ul,
+ol {
+  font-family: var(--secondary-font);
+  display: block;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-style: italic; /* for the alt */
+  object-fit: cover;
+}
 
 .icon {
   stroke-width: 0.9;

@@ -5,8 +5,7 @@ import BeanRow from "./BeanRow";
 
 export default function BeansTable({beans}) {
     return (
-        <div>
-            <Table>
+            <Table columns="6"> 
                 <Table.Header>
                     <div>الترتيب</div>
                     <div>صورة</div>
@@ -17,7 +16,6 @@ export default function BeansTable({beans}) {
                 </Table.Header>
                 <Table.Body data={beans} render={bean => <BeanRow bean={bean} key={bean._id}/>}/>
             </Table>
-        </div>
     )
 }
 

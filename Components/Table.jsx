@@ -1,34 +1,65 @@
-"use client"
+"use client";
 
-import { createContext, useContext } from "react"
 import styled from "styled-components";
 
 const StyledTable = styled.div`
-  
+  --num-col: ${(props) => props.$numCol}; // the custome css variable lets you get rid of the context hook, because the CCV is accessable between the parent-children
+  --col-width: 10rem;
+
+  width: 80% ;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(
+    var(--num-col),
+    minmax(fit-content, 1fr)
+  );
+
+  grid-template-rows: repeat(2, minmax(min(max-content, 100%), 1fr));
+
+
+
+  /* overflow-x: scroll; */
+
+  border: var(--check);
 `;
 
+const GridSettings = styled.div`
 
-const TableHeader = styled.div`
-  text-align: center;
+/* OLD CODE (leaved for reference): 
+/ the reason why var(--num-col) is working here, although I didn't nest this comp anywhere is because
+// the other children (TableHeader, TableBody, TableRow) have access to the CCV through their parent
+display: grid;
+grid-template-columns: subgrid;
+grid-column: 1 / calc(var(--num-col) + 1);
+justify-items: center;
+align-items: center;
+
+padding: 1rem;
+*/
+
+display: grid;
+grid-template-columns: subgrid;
+grid-column: 1 / calc(var(--num-col) + 1);
+justify-items: center;
+align-items: center;
+
+`;
+
+const TableHeader = styled(GridSettings)`
+  font-size: 1.8rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: var(--main-font-colour);
-  border-bottom: 1px solid var(--colour-secondary-dark-2);
-  padding: 1.6rem 2.4rem;
+  background-color: saddlebrown;
 `;
 
-const TableRow = styled.div`
-  text-align: center;
-  padding: 2.4rem 4rem;
+const TableBody = styled(GridSettings)`
+  background-color: wheat;
+`;
+
+const TableRow = styled(GridSettings)`
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--colour-secondary-dark-2);
   }
-`;
-
-const TableBody = styled.section`
- 
 `;
 
 const Footer = styled.footer`
@@ -43,48 +74,34 @@ const Empty = styled.p`
 `;
 
 
-const TableContext = createContext();
-
 export default function Table({ columns, children }) {
-    return (
-        <TableContext.Provider value={{columns}}>
-            <StyledTable role="table">
-                {children}
-            </StyledTable>
-            
-        </TableContext.Provider>
-    )
+  return (
+      <StyledTable role="table" $numCol={columns}>
+        {children}
+      </StyledTable>
+  );
 }
 
-function Header({children}) {
-    const {columns} = useContext(TableContext);
-
-    return(
-        <TableHeader role="row" as="header" columns={columns}>
-            {children}
-        </TableHeader>
-    );
+function Header({ children }) {
+  return (
+    <TableHeader role="row" as="header">
+      {children}
+    </TableHeader>
+  );
 }
 
+function Body({ data, render }) {
+  if (!data?.length) return <div>لا يوجد بيانات لعرضها</div>;
 
-function Body({data, render}) {
-    if(!data?.length) return <div>لا يوجد بيانات لعرضها</div>
-    
-    return(
-        <TableBody>
-            {Object.values(data).map(render)}
-        </TableBody>  
-    );
+  return <TableBody>{Object.values(data).map(render)}</TableBody>;
 }
 
-
-function Row({children}) {
-    const {columns} = useContext(TableContext);
-    return(
-        <TableRow role="row" as="header" columns={columns}>
-            {children}
-        </TableRow>
-    );
+function Row({ children }) {
+  return (
+    <TableRow role="row" as="row">
+      {children}
+    </TableRow>
+  );
 }
 
 Table.Header = Header;

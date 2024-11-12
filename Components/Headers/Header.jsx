@@ -27,6 +27,7 @@ export default function Header({ children }) {
   const {width} = useWindowSize();
 
   return (
+    // FIXME: the humen is appearing after the loading/reloading each time because the window.with is unknown at the time, change the condition later to prevent this case from happening
     width >= tbSize ?
     <StyledHeader>
         {children}
