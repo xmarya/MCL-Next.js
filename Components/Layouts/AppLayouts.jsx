@@ -1,18 +1,14 @@
 "use client";
 
 import styled from "styled-components";
+import { FlexBox } from "./FlexBox";
 
-export const AppLayout = styled.main`
+export const AppLayout = styled(FlexBox).attrs({ as: "main" })`
+  gap: 10rem;
   max-width: 95%;
   min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
+  padding-block: 10rem;
   margin-inline: auto;
 
   background-color: grey;
-
-  /* position: relative; // for the Hamburger nad the language button. */
 `;

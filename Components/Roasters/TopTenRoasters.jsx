@@ -3,25 +3,24 @@ import RoastersTable from "./RoastersTable";
 import Link from "next/link";
 import { Noto } from "@/app/layout";
 import Button from "../Button";
+import { FlexBox } from "../Layouts/FlexBox";
 
 export default async function TopTenRoasters() {
   const roasters = await getTopTen("Roaster");
 
   return (
-    <>
-      <div className="flex flex-row items-center justify-between">
-        <h3 className={`${Noto.variable} section-heading-42`}>
-          TopTenRoasters comp.
-        </h3>
-      </div>
-      <div className="flex flex-col items-center gap-6">
-        <RoastersTable roasters={roasters} />
-        <Button $btnType="secondary">
-          <Link className={`${Noto.variable} text-13`} href="/roasters">
-            عرض جميع المحامص
-          </Link>
-        </Button>
-      </div>
-    </>
+    <FlexBox $gap="1.6rem">
+      <h3 className={`${Noto.variable} section-heading-42`}>
+        TopTenRoasters comp.
+      </h3>
+
+      <RoastersTable roasters={roasters} />
+
+      <Button $btnType="secondary">
+        <Link className={`${Noto.variable} text-13`} href="/roasters">
+          عرض جميع المحامص
+        </Link>
+      </Button>
+    </FlexBox>
   );
 }

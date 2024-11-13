@@ -27,7 +27,7 @@ const GlobalStyles = createGlobalStyle`
   --hero-heading: clamp(3rem, 8vw, 8rem);
   --section-heading: clamp(2.6rem, 5vw, 3.2rem);
   --secondary-heading: clamp(2.4rem, 5vw, 2.8rem);
-  --p-text: clamp(1.6rem, 2.5cqi, 2rem);
+  --p-text: clamp(1.4rem, 1.6cqi, 2cqi);
   --button-text: clamp(1.4rem, 1.6rem, 1.8rem);
 
   --xxl-text: 2.2rem;
@@ -84,8 +84,9 @@ html {
   }
 
   p {
+    font-size: var(--p-text);
     line-height: 1.4;
-  text-wrap: pretty;
+    text-wrap: pretty;
   }
 
   
