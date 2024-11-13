@@ -1,5 +1,6 @@
 import AllBeans from "@/Components/Beans/AllBeans";
 import BeansFilters from "@/Components/Beans/BeansFilters";
+import { FlexBox } from "@/Components/Layouts/FlexBox";
 import TableOperations from "@/Components/TableOperations";
 import { destructSearchParams } from "@/helpers/filtering";
 import { Suspense } from "react";
@@ -14,11 +15,11 @@ export default function Beans({ searchParams }) {
   const {filter, sortBy, page} = destructSearchParams(searchParams);
 
   return (
-    <section className="h-full grid grid-cols-[0.2fr_1fr] gap-6 mt-12">
+    <>
       <TableOperations Filter={BeansFilters}/>
       <Suspense fallback="Loading...">
         <AllBeans filter={filter} sort={sortBy} page={page}/>
       </Suspense>
-    </section>
+    </>
   );
 }

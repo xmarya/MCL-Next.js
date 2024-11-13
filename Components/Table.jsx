@@ -5,7 +5,6 @@ import styled from "styled-components";
 const StyledTable = styled.div`
   --num-col: ${(props) =>
     props.$numCol}; // the custome css variable lets you get rid of the context hook, because the CCV is accessable between the parent-children
-  --col-width: 10rem;
 
   width: 80%;
   max-width: 100%;

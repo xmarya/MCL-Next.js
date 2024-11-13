@@ -41,8 +41,7 @@ export default function BeanCard({bean, fave}) {
   }
 
   return (
-    // <StyledBeanCard>
-    <li className="flex flex-col border border-gray-200 rounded-md rounded-ss-[2rem] p-3">
+    <div>
       <CardHeader>
         <CardRanking ranking={ranking}/>
         <button onClick={handleHearts}>
@@ -84,8 +83,8 @@ export default function BeanCard({bean, fave}) {
         <Rating ratingAvg={ratingsAverage} ratingQuant={ratingsQuantity}/>
         <CardButton resourse="beans" id={id} text="عرض المحصول"/>
       </CardFooter>
-      </li>
-    // </StyledBeanCard>
+
+    </div>
     )
 }
 

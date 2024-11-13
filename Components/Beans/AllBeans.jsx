@@ -11,8 +11,6 @@ export default async function AllBeans({ filter, sort, page }) {
 
   // console.log(Object.entries(filter).length > 0); // ✅
   return (
-    // <div className="flex flex-col px-10">
-    <div className="flex flex-col">
       <Pagination totalData={totalData}>
         <CardsList>
           {beans.map((bean) => (
@@ -21,6 +19,5 @@ export default async function AllBeans({ filter, sort, page }) {
         </CardsList>
         <Buttons/>
       </Pagination>
-    </div>
   );
 }
