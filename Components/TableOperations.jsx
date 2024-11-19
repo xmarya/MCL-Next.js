@@ -5,7 +5,7 @@ import SortBy from "./SortBy";
 
 export default function TableOperations({ Filter }) {
   return (
-    <aside className="h-fit bg-gray-200 col-span-1 grid grid-rows-[1fr_0.5fr_0.1fr] rounded-ss-[2rem] p-5 mt-20 mr-5">
+    <aside className="bg-gray-600 h-fit p-[1rem]">
       <Filter />
       <SortBy />
       {/* reset button */}

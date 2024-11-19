@@ -1,20 +1,20 @@
 "use client"
 
-import Image from "next/image";
+import { updateFave } from "@/API/actionsMutation";
 import { HeartIcon } from "@heroicons/react/24/outline";
-import CardHeader from "../Card/CardHeader";
-import CardRanking from "../Card/CardRanking";
-import CardImage from "../Card/CardImage";
+import Link from "next/link";
+import { useState } from "react";
 import CardBody from "../Card/CardBody";
-import CardName from "../Card/CardName";
+import CardButton from "../Card/CardButton";
 import CardDetails from "../Card/CardDetails";
 import CardFooter from "../Card/CardFooter";
+import CardHeader from "../Card/CardHeader";
+import CardImage from "../Card/CardImage";
+import CardName from "../Card/CardName";
+import CardRanking from "../Card/CardRanking";
+import { SubgridItem } from "../Layouts/SubgridItem";
 import Rating from "../Rating";
 import { Tag, TagsList } from "../Tag";
-import CardButton from "../Card/CardButton";
-import { updateFave } from "@/API/actionsMutation";
-import { useState } from "react";
-import Link from "next/link";
 
 export default function BeanCard({bean, fave}) {
   
@@ -41,7 +41,7 @@ export default function BeanCard({bean, fave}) {
   }
 
   return (
-    <div>
+    <SubgridItem as="li">
       <CardHeader>
         <CardRanking ranking={ranking}/>
         <button onClick={handleHearts}>
@@ -84,7 +84,7 @@ export default function BeanCard({bean, fave}) {
         <CardButton resourse="beans" id={id} text="عرض المحصول"/>
       </CardFooter>
 
-    </div>
+    </SubgridItem>
     )
 }
 

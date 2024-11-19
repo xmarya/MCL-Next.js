@@ -5,6 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useId } from "react";
 import Select from "react-select";
 import makeAnimated from 'react-select/animated';
+import { FlexBox } from "./Layouts/FlexBox";
 
 const animatedComponents = makeAnimated();
 

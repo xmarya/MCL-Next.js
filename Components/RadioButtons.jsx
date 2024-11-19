@@ -2,10 +2,10 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import styled from "styled-components";
+import { FlexBox } from "./Layouts/FlexBox";
 
 const Fieldset = styled.fieldset`
-    display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     /* border: 0.13rem solid var(--colour-primary-dark); */
     padding: 0.75rem;
     /* margin: 0.97rem 0; // the gap between elements in BeansFilter.jsx is 1rem, after adding the border, 0.13rem has been taken from the total gap space, so I get around this and added a margin in the y-axis */

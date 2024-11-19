@@ -42,7 +42,7 @@ export function TotalResults() {
 export function Buttons() {
     const {totalPages, currentPage, handlePagination} = useContext(PageContext)
     return (
-        <div className="flex justify-center items-center gap-12 mt-6">
+        <div className="flex justify-center items-center gap-12 mt-6 col-span-full">
         {
           (totalPages > 1 && currentPage > 1) ? 
           <ButtonIcon onClick={() => handlePagination(currentPage - 1)}>

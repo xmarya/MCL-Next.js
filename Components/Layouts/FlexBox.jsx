@@ -9,9 +9,15 @@ export const FlexBox = styled.div`
   width: 100%;
   display: flex;
   flex-direction: var(--direction);
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: var(--gap);
 
-  background-color: lightblue;
+  border: var(--check);
+  border-color: lightblue;
+
+  /* & > * {
+    flex: 1;
+  } */
 `;
