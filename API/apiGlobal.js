@@ -31,7 +31,7 @@ export async function getAll(Model, filter = {}, sortBy = "-ratingsAverage", pag
 
     const totalDocs = await Model.find(filter).countDocuments();
 
-    let docs = await Model.find(filter).skip(skipResults).limit(6).sort(sortBy).select("-__v");
+    let docs = await Model.find(filter).skip(skipResults).limit(resultesPerPage).sort(sortBy).select("-__v");
 
     if(!docs) return "No matched data";
 

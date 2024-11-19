@@ -41,7 +41,7 @@ export default function BeanCard({bean, fave}) {
   }
 
   return (
-    <SubgridItem as="li">
+    <li>
       <CardHeader>
         <CardRanking ranking={ranking}/>
         <button onClick={handleHearts}>
@@ -84,7 +84,7 @@ export default function BeanCard({bean, fave}) {
         <CardButton resourse="beans" id={id} text="عرض المحصول"/>
       </CardFooter>
 
-    </SubgridItem>
+    </li>
     )
 }
 
