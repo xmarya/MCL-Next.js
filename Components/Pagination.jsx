@@ -1,10 +1,10 @@
 "use client"
 
 import { ResultesPerPage } from "@/data/constants";
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
+import { TiChevronLeft, TiChevronRight } from "react-icons/ti";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { createContext, useContext } from "react";
-import ButtonIcon from "./ButtonIcon";
+import ButtonIcon from "./Buttons/ButtonIcon";
 
 const PageContext = createContext();
 
@@ -46,7 +46,8 @@ export function Buttons() {
         {
           (totalPages > 1 && currentPage > 1) ? 
           <ButtonIcon onClick={() => handlePagination(currentPage - 1)}>
-            <ChevronDoubleRightIcon/>
+            <TiChevronRight />
+
           </ButtonIcon>
           :
           null
@@ -55,7 +56,8 @@ export function Buttons() {
         {
           (totalPages > 1 && currentPage < totalPages) ? 
           <ButtonIcon onClick={() => handlePagination(currentPage + 1)}>
-            <ChevronDoubleLeftIcon/>
+            <TiChevronLeft />
+
           </ButtonIcon>
           :
           null

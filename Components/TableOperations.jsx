@@ -1,14 +1,15 @@
 
 // import BeansFilter from "./Beans/BeansFilter";
 // import RoastersFilter from "./Roasters/RoastersFilter";
+import { Aside } from "./Aside";
 import SortBy from "./SortBy";
 
 export default function TableOperations({ Filter }) {
   return (
-    <aside className="bg-gray-600 h-fit p-[1rem]">
+    <Aside $align="stretch" $gap="1.4rem">
       <Filter />
       <SortBy />
       {/* reset button */}
-    </aside>
+    </Aside>
   );
 }

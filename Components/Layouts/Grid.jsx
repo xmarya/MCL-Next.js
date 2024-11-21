@@ -9,18 +9,23 @@ export const Grid = styled.div`
   --gap: ${(props) => props.$gap};
 
   
-  container-type: inline-size;
   width: 100%;
   max-width: 100%;
 
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, minmax(min(var(--col-width), 100%), 1fr)); */
   grid-template-columns: 0.3fr 1fr;
   grid-template-rows: repeat(var(--num-rows), minmax(min(max-content, 100%), 1fr));
+  align-content: center;
   column-gap: var(--gap);
       
   padding-inline: 1rem;
 
   border: var(--check);
   border-color: royalblue;
+
+  @media (max-width: 48em) {
+        // 768 / 16
+        grid-template-columns: 1fr;
+        row-gap: var(--gap);
+    }
 `;

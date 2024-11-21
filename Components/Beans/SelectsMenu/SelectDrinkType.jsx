@@ -1,5 +1,5 @@
 "use client"
-import RadioButtons from "@/Components/RadioButtons";
+import RadioButtons from "@/Components/Buttons/RadioButtons";
 import { useSearchParams } from "next/navigation";
 
 const TypesOptions = [

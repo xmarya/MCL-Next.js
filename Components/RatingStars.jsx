@@ -1,5 +1,4 @@
 "use client"
-import { StarIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import StarRating from "react-svg-star-rating";
 

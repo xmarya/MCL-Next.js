@@ -1,7 +1,7 @@
 "use client";
 
 import styled from "styled-components";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 
 const Form = styled.form`
   width: 75%;
@@ -11,7 +11,7 @@ const Form = styled.form`
   align-items: center;
   gap: 1rem;
   padding: 1.4rem 0;
-  `;
+`;
 
 const FormError = styled.p`
   min-height: 1.8rem; /* this line for reserving the space, adjust the preserved height based on font-size */

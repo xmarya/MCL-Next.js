@@ -1,6 +1,5 @@
 import { getAll, getFaves } from "@/API/apiGlobal";
 import BeanCard from "./BeanCard";
-import CardsList from "../Card/CardsList";
 import Bean from "@/Models/beanModel";
 import Pagination, { Buttons } from "@/Components/Pagination";
 import { Subgrid } from "../Layouts/Subgrid";

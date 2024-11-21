@@ -3,7 +3,7 @@ import { getTopTen } from "@/API/apiRanking";
 import BeansTable from "./BeansTable";
 import { Noto } from "@/app/layout";
 import Link from "next/link";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 import { FlexBox } from "../Layouts/FlexBox";
 
 export default async function TopTenBeans() {

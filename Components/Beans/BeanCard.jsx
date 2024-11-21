@@ -12,7 +12,6 @@ import CardHeader from "../Card/CardHeader";
 import CardImage from "../Card/CardImage";
 import CardName from "../Card/CardName";
 import CardRanking from "../Card/CardRanking";
-import { SubgridItem } from "../Layouts/SubgridItem";
 import Rating from "../Rating";
 import { Tag, TagsList } from "../Tag";
 

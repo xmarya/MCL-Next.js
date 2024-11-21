@@ -65,10 +65,10 @@ export default function FilterSelect({ pText, options, filterField }) {
     }
 
     return (
-        <div>
+        <FlexBox $align="stretch" $gap="0.5rem">
         <p className="text-[1.6rem] font-semibold text-gray-500 mb-3">{pText}</p>
         <Select id={id} onChange={handleSelect} defaultValue={defaultValues} isMulti isRtl placeholder="اختر..." options={options} closeMenuOnSelect={false} components={animatedComponents} styles={customStyles} />
-        </div>
+        </FlexBox>
     )
 }
 

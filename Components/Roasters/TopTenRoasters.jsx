@@ -2,7 +2,7 @@ import { getTopTen } from "@/API/apiRanking";
 import RoastersTable from "./RoastersTable";
 import Link from "next/link";
 import { Noto } from "@/app/layout";
-import Button from "../Button";
+import Button from "../Buttons/Button";
 import { FlexBox } from "../Layouts/FlexBox";
 
 export default async function TopTenRoasters() {

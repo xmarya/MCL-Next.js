@@ -1,3 +1,4 @@
+import { FlexBox } from "../Layouts/FlexBox";
 import BeansNotes from "./Filters/BeansNotes";
 import BeansOrigins from "./Filters/BeansOrigins";
 import BeansProcessTypes from "./Filters/BeansProcessTypes";
@@ -9,7 +10,7 @@ import SelectRating from "./SelectsMenu/SelectRating";
 
 export default function BeansFilter({params = "ar"}) {
   return (
-    <div>
+    <FlexBox $align="stretch" $gap="1.4rem">
         <SelectRating/>
         <RoastersNames locale={params}/>
         <BeansOrigins locale={params}/>
@@ -17,6 +18,6 @@ export default function BeansFilter({params = "ar"}) {
         <BeansVarieties locale={params}/>
         <BeansNotes locale={params}/>
         <SelectDrinkType locale={params}/>
-    </div>
+    </FlexBox>
   );
 }
